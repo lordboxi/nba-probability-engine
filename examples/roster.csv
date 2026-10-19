@@ -1,0 +1,11 @@
+player_id,name,team
+home-01,Example Player 01,HOME_TEAM_NAME
+home-02,Example Player 02,HOME_TEAM_NAME
+home-03,Example Player 03,HOME_TEAM_NAME
+home-04,Example Player 04,HOME_TEAM_NAME
+home-05,Example Player 05,HOME_TEAM_NAME
+away-01,Example Player 06,AWAY_TEAM_NAME
+away-02,Example Player 07,AWAY_TEAM_NAME
+away-03,Example Player 08,AWAY_TEAM_NAME
+away-04,Example Player 09,AWAY_TEAM_NAME
+away-05,Example Player 10,AWAY_TEAM_NAME

@@ -1,0 +1,99 @@
+seed: 42
+feed:
+  base_url: https://stats.nba.com/stats
+  timeout_seconds: 20
+  min_request_interval_seconds: 5
+  snapshot_database: data/feed_snapshots.sqlite
+  snapshot_directory: data/feed_snapshots
+  terms_url: https://www.nba.com/termsofuse
+  terms_reviewed_on: "2026-10-19"
+  possession_fta_weight: 0.44
+  snapshot_shrink_k: 20.0
+  preseason_game_weight: 0.1
+lineups:
+  max_uncertain_players: 10
+  minutes_tolerance: 0.000001
+  status_probabilities:
+    out: 0.0
+    doubtful: 0.25
+    questionable: 0.5
+    probable: 0.75
+    available: 1.0
+market:
+  min_probability_edge: 0.03
+  probability_stress_buffer: 0.03
+  min_expected_value: 0.02
+  max_quote_age_minutes: 30
+  max_scenario_probability_range: 0.15
+  probability_sum_tolerance: 0.000001
+  model_weight_k: 20.0
+  prior_equivalent_games: 5.0
+data:
+  database: data/nba.sqlite
+  raw_directory: data/raw
+  calendar_timezone: America/New_York
+ratings:
+  prior_shrink: 0.65
+  season_blend_k: 12.0
+  initial_variance: 100.0
+  process_noise: 0.35
+  observation_noise: 225.0
+features:
+  league_pace: 100.0
+  league_ortg: 114.0
+  stats_window: 30
+  stats_shrink_k: 10.0
+  initial_rest_days: 3.0
+  rest_cap_days: 7.0
+  travel_scale_km: 1000.0
+  altitude_scale_m: 1000.0
+model:
+  initial_hca: 2.5
+  context_window: 500
+  context_min_games: 100
+  context_ridge: 30.0
+  residual_window: 500
+  residual_min_games: 100
+  margin_sigma: 12.0
+  total_sigma: 19.0
+  minimum_sigma: 3.0
+  spread_bins: [0.0, 5.0, 10.0, 1000000.0]
+evaluation:
+  prediction_lead_minutes: 60
+  min_train_games: 100
+  probability_clip: 0.000000001
+  calibration_bins: 10
+  home_frequency_alpha: 1.0
+  home_frequency_beta: 1.0
+  qq_probabilities: [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99]
+  experiment_directory: experiments
+acceptance:
+  policy_version: "1.0"
+  min_evaluation_games: 1000
+  min_seasons: 2
+  min_games_per_season: 200
+  min_date_blocks: 60
+  min_log_loss_improvement: 0.005
+  max_season_log_loss_regression: 0.01
+  max_ece: 0.05
+  max_brier_regression: 0.0
+  max_coverage90_error: 0.05
+  max_abs_margin_bias: 2.0
+  max_abs_total_bias: 3.0
+  max_crps_regression: 0.0
+  bootstrap_samples: 1000
+  confidence_level: 0.95
+demo:
+  seasons: 2
+  games_per_season: 240
+  teams: 12
+  first_season: 2024
+  start_month: 10
+  start_day: 22
+  days_between_rounds: 2
+  rating_sd: 5.0
+  pace_sd: 3.0
+  margin_sd: 12.0
+  total_sd: 18.0
+  result_delay_hours: 3
+  fixture_lead_days: 30
