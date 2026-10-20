@@ -9,6 +9,7 @@ from pathlib import Path
 
 from nbaprob.data.schema import utc
 from nbaprob.data.supabase_store import remote_store
+from nbaprob.eval.journal_markets import market_scores
 from nbaprob.eval.metrics import binary_scores
 
 
@@ -189,4 +190,5 @@ def journal_scores(config, *, entries=None):
         "note": "Descriptive forward log, not a validated strategy. "
         "Latest prediction per game; synthetic and post-tipoff archives excluded. "
         "No automatic retraining.",
+        "market_evaluation": market_scores(forecasts, outcomes, config),
     }

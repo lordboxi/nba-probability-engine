@@ -54,11 +54,13 @@ def test_local_app_roster_selection_and_house_comparison(config, tables, tmp_pat
     assert not app.exception
     assert not app.error
     assert len(app.metric) == 3
+    assert any("โมเดลให้โอกาสถูกสูงกว่า" in item.value for item in app.markdown)
     assert any("impact rating" in item.value for item in app.info)
     assert len(app.dataframe) >= 1
     result = json.loads(app.json[0].value)
     selection = result["roster_selection"]
     assert selection["selection_type"] == "positioned_lineup"
+    assert result["house_reading"]["most_likely_model"] in ("home", "away", None)
     assert sum(row["starter"] for row in selection["players"]) == 10
     assert sum(row["plays"] for row in selection["players"]) == 11
     assert sum(row["position"] == "PG" for row in selection["players"]) == 2

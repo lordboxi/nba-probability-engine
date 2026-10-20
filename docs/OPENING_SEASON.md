@@ -77,7 +77,8 @@ assisted_p = model_weight * independent_p + (1-model_weight) * house_fair_p
 ไม่รวมข้อมูลจำลอง การ archive หลังแข่ง และ as-of ที่อยู่หลังเวลา issue
 เทียบ Brier, log loss และ accuracy ของโมเดล/House/assisted บนเกม Moneyline ชุดเดียวกัน
 รายงานเชิงพรรณนาเหล่านี้ยังไม่ใช่ acceptance gate หรือหลักฐานกำไร/CLV
-ยังไม่มี auto-retraining, แหล่งผลจริงอัตโนมัติ หรือการประเมิน spread/total ใน journal
+เพิ่มรายงานแยก Moneyline/Spread/Total และนำเข้าผลสุดท้ายจาก CSV แล้ว ดู `HOUSE_TRACKING.md`
+ยังไม่มี auto-retraining หรือแหล่งผลจริงอัตโนมัติ
 รองรับฐานข้อมูล Supabase และสถิติผู้เล่น/ตัวแก้นาทีบนเว็บแล้ว ดู `SUPABASE.md` และ `PLAYER_STATS.md`
 
 ```powershell
@@ -90,7 +91,7 @@ CLI ใช้ Preseason prior เมื่อเลือก Regular Season โ�
 
 ## ช่องว่างที่ยังต้องเติม
 
-- สถิติ Regular Season ฤดูกาลก่อน/ปัจจุบันที่ยังไม่มี: หน้าจอระบุแยกตามทีม
+- เพิ่มฐาน Regular Season 2025–26 ครบ 30 ทีมแล้ว; ยังต้องเพิ่มข้อมูลฤดูกาลปัจจุบันเมื่อมี
 - Impact ratings, นาทีลงสนาม และ roster continuity ที่มีหลักฐานรองรับ
 - ตารางแข่ง วันพัก และการเดินทางจริง
 - ประวัติราคาปิดและราคาหลาย House; ตอนนี้กรอกราคาเดียวต่อคำทำนาย

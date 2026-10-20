@@ -9,6 +9,7 @@ from nbaprob.data.schema import utc
 from nbaprob.lineups.scenarios import lineup_forecast, mixture_summary, settlement_scenarios
 from nbaprob.pricing.compare import compare_house
 from nbaprob.pricing.market_prior import market_assisted_probability
+from nbaprob.pricing.reading import house_reading
 
 STARTING_POSITIONS = ("PG", "SG", "SF", "PF", "C")
 
@@ -145,6 +146,7 @@ def analyze_forecast(
                 reason="Snapshot model has not passed real holdout validation; "
                 "edge is exploratory only",
             )
+        output["house_reading"] = house_reading(output["house_comparison"])
     elif use_market_prior:
         raise ValueError("Market-assisted mode requires a House quote")
     output["config_hash"] = hashlib.sha256(

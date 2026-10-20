@@ -11,6 +11,7 @@ import yaml
 
 from nbaprob.data.bootstrap import bootstrap_snapshots
 from nbaprob.data.snapshots import latest_snapshot
+from nbaprob.models.team_snapshot import matchup_forecast
 
 ROOT = Path(__file__).parents[1]
 SEEDS = ROOT / "deployment/seed_snapshots"
@@ -42,7 +43,7 @@ def test_cloud_bootstrap_is_idempotent_and_preserves_observation_time(config):
     local_data = Path(config["data"]["database"])
     local_data.write_bytes(b"owner data must not be changed")
     first = bootstrap_snapshots(config, SEEDS)
-    assert len(first) == 4
+    assert len(first) == 5
     assert bootstrap_snapshots(config, SEEDS) == first
     assert local_data.read_bytes() == b"owner data must not be changed"
     document = json.loads((SEEDS / "teams-preseason.json").read_text(encoding="utf-8"))
@@ -64,6 +65,35 @@ def test_cloud_seed_bundle_contains_only_nba_statistics(config, tmp_path):
     (tmp_path / "private.json").write_text('{"resource":"journal"}', encoding="utf-8")
     with pytest.raises(ValueError, match="Bundled data"):
         bootstrap_snapshots(config, tmp_path)
+
+
+def test_real_regular_season_prior_has_30_teams_and_cannot_backfill_forecasts(config):
+    bootstrap_snapshots(config, SEEDS)
+    document = json.loads((SEEDS / "teams-2025-26-regular.json").read_text(encoding="utf-8"))
+    at = document["retrieved_at"]
+    prior = latest_snapshot(config, "teams", "2025-26", at, "Regular Season")
+    assert len(prior["data"]) == 30
+    assert len({row["team_id"] for row in prior["data"]}) == 30
+    assert all(row["gp"] == 82 and row["wins"] + row["losses"] == 82 for row in prior["data"])
+    assert (
+        latest_snapshot(
+            config, "teams", "2025-26", pd.Timestamp(at) - pd.Timedelta(seconds=1), "Regular Season"
+        )
+        is None
+    )
+    _, base = matchup_forecast(
+        None,
+        "1610612738",
+        "1610612737",
+        pd.Timestamp(at) + pd.Timedelta(hours=4),
+        at,
+        config,
+        season="2026-27",
+        season_type="Regular Season",
+        previous_snapshot=prior,
+    )
+    assert "previous_season_stats" not in base["data_readiness"]["missing"]
+    assert base["data_readiness"]["teams"]["1610612738"]["previous_season_games"] == 82
 
 
 def test_cloud_entrypoint_starts_with_real_seed_data(config, tmp_path, monkeypatch):

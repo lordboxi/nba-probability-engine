@@ -13,6 +13,7 @@ from nbaprob.config import load_config
 from nbaprob.data.bootstrap import bootstrap_snapshots
 from nbaprob.data.journal import history, journal_scores, record_outcome, save_forecast
 from nbaprob.data.nba_stats import NBAStatsAdapter
+from nbaprob.data.outcomes_import import import_outcomes, outcomes_template, prepare_outcomes
 from nbaprob.data.schema import utc
 from nbaprob.data.snapshots import latest_snapshot, save_snapshot
 from nbaprob.data.store import load_tables
@@ -20,6 +21,7 @@ from nbaprob.data.supabase_store import remote_store
 from nbaprob.features.build import ReplayEngine
 from nbaprob.models.team_snapshot import matchup_forecast
 from nbaprob.player_ui import player_analysis_panel, player_data_panel
+from nbaprob.pricing.reading import house_reading
 
 
 def now():
@@ -368,6 +370,26 @@ def show_result(result, game):
             "comparison_only": "เทียบโอกาสได้ — ยังขาดราคาที่เสนอจริง",
             "no_selection": "ยังไม่เลือกฝั่งใด",
         }
+        reading = result.get("house_reading") or house_reading(comparison)
+        st.subheader("อ่านราคา House เพื่อเลือกฝั่ง")
+        for label, key in (
+            ("โมเดลให้โอกาสถูกสูงกว่า", "most_likely_model"),
+            ("House ให้โอกาสสูงกว่า", "most_likely_house"),
+        ):
+            side = reading[key]
+            st.write(f"{label}: **{side_names[side]}**" if side else f"{label}: เท่ากัน")
+        if reading["highest_ev_side"]:
+            side = reading["highest_ev_side"]
+            st.write(f"ฝั่งที่ EV ตามโมเดลสูงกว่า: **{side_names[side]}** (สำหรับติดตามผลทดลอง)")
+        if (
+            all(row["expected_value_per_unit"] is not None for row in comparison["sides"])
+            and not reading["positive_ev_sides"]
+        ):
+            st.info("ไม่มีฝั่งที่ EV เป็นบวกตามโมเดล ณ ราคานี้ แม้ฝั่งหนึ่งจะมีโอกาสถูกสูงกว่า")
+        st.caption(
+            "โอกาสถูกสูงกว่าไม่เท่ากับราคาคุ้มค่า · Spread คือชนะราคาแต้มต่อ และ Total คือสูง/ต่ำ "
+            "· เปอร์เซ็นต์คำนวณเฉพาะกรณีไม่คืนเงิน · การจัดอันดับนี้ยังเป็นผลทดลอง"
+        )
         st.subheader(labels[comparison["decision"]])
         if comparison["candidate"]:
             st.write(f"ฝั่งที่ผ่านเกณฑ์: **{side_names[comparison['candidate']]}**")
@@ -377,6 +399,13 @@ def show_result(result, game):
                 "โมเดล (%)": 100 * row["model_probability_no_push"],
                 "House ตัดน้ำ (%)": 100 * row["house_fair_probability"],
                 "ส่วนต่าง (จุด %)": 100 * row["probability_edge"],
+                "ราคา Decimal ที่เสนอ": row["offered_decimal"],
+                "จุดคุ้มทุน (%)": 100 * row["break_even_probability"]
+                if row["break_even_probability"] is not None
+                else None,
+                "ราคาเป็นกลางตามโมเดล": 1 / row["model_probability_no_push"]
+                if row["model_probability_no_push"] > 0
+                else None,
                 "EV ต่อหน่วย": row["expected_value_per_unit"],
                 "EV หลังทดสอบเงื่อนไขเข้มขึ้น": row["stress_expected_value_per_unit"],
             }
@@ -395,6 +424,10 @@ def show_result(result, game):
         )
         st.caption(
             "พิจารณาราคาที่คุ้มค่าและความไม่แน่นอนร่วมกัน ส่วนต่างโอกาสสูงกว่า House อย่างเดียวไม่ได้รับรองผลตอบแทน"
+        )
+        st.caption(
+            "ราคาเป็นกลางตามโมเดลคือจุด EV = 0 โดยคืนทุนเมื่อ push; ราคาที่เสนอควรสูงกว่านี้ "
+            "จึงเป็น EV บวกตามค่าประมาณ ยังไม่ใช่เกณฑ์แนะนำให้เลือกโดยอัตโนมัติ"
         )
     st.download_button(
         "ดาวน์โหลดผลวิเคราะห์ JSON",
@@ -492,8 +525,77 @@ def history_panel(config):
             f"เกม Moneyline ที่มีข้อมูลครบเทียบกัน: {summary['matched_moneyline_games']} เกม · "
             "ยังเป็นรายงานเบื้องต้น ไม่ใช่การรับรองความได้เปรียบ"
         )
+    st.subheader("ผลเทียบ House แยกตามตลาด")
+    evaluation = summary["market_evaluation"]
+    market = st.selectbox(
+        "ตลาดที่ต้องการติดตาม", ["moneyline", "spread", "total"], key="history_market"
+    )
+    report = evaluation["markets"][market]
+    if report["settled_games"] == 0:
+        st.info("ยังไม่มีคำทำนายจริงก่อนแข่งพร้อมราคาที่ไม่เก่าและผลสุดท้ายสำหรับตลาดนี้")
+    else:
+        st.write(
+            f"มีผลจริง {report['settled_games']} เกม · คืนทุน {report['push_games']} เกม · "
+            f"ประเมิน probability {report['scored_games']} เกม"
+        )
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "แนวทาง": "โมเดลอิสระ" if name == "model" else "House ตัดค่าน้ำ",
+                        "ถูก": row["wins"],
+                        "ผิด": row["losses"],
+                        "คืนทุน": row["pushes"],
+                        "อัตราทายถูก": row["hit_rate"],
+                        "จำนวนที่มีราคาจริง": row["priced_picks"],
+                        "ผลตอบแทนจำลองต่อเงินหนึ่งหน่วย": row["paper_roi"],
+                    }
+                    for name, row in report["picks"].items()
+                ]
+            ),
+            hide_index=True,
+        )
+        if report["scores"]:
+            st.dataframe(pd.DataFrame(report["scores"]).T[["brier", "log_loss"]])
+        st.dataframe(
+            pd.DataFrame([row for row in evaluation["details"] if row["market"] == market]),
+            hide_index=True,
+        )
+    st.caption(
+        "ใช้คำทำนายจริงล่าสุดก่อนแข่ง 1 ครั้งต่อเกมต่อตลาดและเส้นราคาที่บันทึกไว้ "
+        "ไม่รวมข้อมูลจำลอง/ราคาที่เก่า; คืนทุนไม่นับถูกหรือผิด "
+        "ผลตอบแทนเป็นการจำลองเลือกฝั่งโอกาสสูงกว่าด้วยเงินเท่ากันทุกเกม ไม่ใช่ผลการเดิมพันจริง "
+        "และยังไม่ใช่การยืนยันความได้เปรียบ"
+    )
     games = {row["game_id"]: row for row in forecasts if utc(row["tipoff"]) < utc(now())}
     if games:
+        with st.expander("นำเข้าผลจริงหลายเกมจาก CSV"):
+            st.caption(
+                "ดาวน์โหลดแม่แบบ ใส่สกอร์สุดท้ายรวม OT และคงสถานะ Final เท่านั้น "
+                "ระบบตรวจ game_id กับชื่อทีมเจ้าบ้าน/ทีมเยือนก่อนบันทึก"
+            )
+            st.download_button(
+                "ดาวน์โหลดแม่แบบผลจริง CSV",
+                outcomes_template(forecasts, now()),
+                file_name="nba_final_scores.csv",
+                mime="text/csv",
+            )
+            score_file = st.file_uploader("ไฟล์ผลสุดท้าย CSV", type=["csv"], key="outcomes_csv")
+            if score_file is not None:
+                text = score_file.getvalue().decode("utf-8-sig")
+                try:
+                    prepared = prepare_outcomes(text, forecasts, outcomes, now())
+                    st.dataframe(pd.DataFrame(prepared), hide_index=True)
+                    if st.button("บันทึกผลจริงจาก CSV"):
+                        saved = import_outcomes(config, text, now())
+                        st.session_state["outcomes_imported"] = saved
+                        st.rerun()
+                except (ValueError, OSError) as error:
+                    st.error(str(error))
+                    st.caption("ตรวจข้อมูล/การเชื่อมต่อแล้วนำเข้าใหม่ได้ สกอร์ที่บันทึกเหมือนเดิมจะถูกข้าม")
+        if "outcomes_imported" in st.session_state:
+            saved = st.session_state.pop("outcomes_imported")
+            st.success(f"บันทึก {saved['submitted']} เกม · ข้ามสกอร์เดิม {saved['unchanged']} เกม")
         with st.form("record_outcome"):
             game_id = st.selectbox(
                 "เกมที่จบแล้ว (กรอกเฉพาะสกอร์สุดท้าย)",
@@ -550,7 +652,10 @@ def main():
         seed_target = (
             os.environ.get("NBA_SUPABASE_URL", "sqlite"),
             os.environ.get("NBA_WORKSPACE_ID", "nba-owner"),
-            4,
+            tuple(
+                (path.name, path.stat().st_mtime_ns)
+                for path in sorted(Path("deployment/seed_snapshots").glob("*.json"))
+            ),
         )
         if st.session_state.get("cloud_seeded") != seed_target:
             bootstrap_snapshots(config, "deployment/seed_snapshots")
@@ -645,9 +750,19 @@ def main():
                 )
             options = {row["team_id"]: row["team"] for row in catalog["data"]}
             left, right = st.columns(2)
-            home = left.selectbox("เจ้าบ้าน", list(options), format_func=options.get)
+            home = left.selectbox(
+                "เจ้าบ้าน",
+                list(options),
+                index=list(options).index("1610612738") if "1610612738" in options else 0,
+                format_func=options.get,
+            )
             away = right.selectbox(
-                "ทีมเยือน", list(options), index=min(1, len(options) - 1), format_func=options.get
+                "ทีมเยือน",
+                list(options),
+                index=list(options).index("1610612737")
+                if "1610612737" in options
+                else min(1, len(options) - 1),
+                format_func=options.get,
             )
             tipoff = st.text_input(
                 "เวลาเริ่มแข่ง (มี timezone)", value=(as_of + pd.Timedelta(hours=4)).isoformat()
