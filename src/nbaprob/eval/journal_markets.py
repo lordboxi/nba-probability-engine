@@ -41,6 +41,13 @@ def market_scores(forecasts, outcomes, config):
                 or comparison["decision"] == "refresh_quote"
             ):
                 continue
+            # as_of can be older than the actual server issue time. A price must
+            # still be fresh when the forecast was really issued to count here.
+            quoted_at = comparison.get("quoted_at")
+            if quoted_at is not None:
+                age = (utc(row["issued_at"]) - utc(quoted_at)).total_seconds() / 60
+                if age < 0 or age > config["market"]["max_quote_age_minutes"]:
+                    continue
             outcome = outcomes[game_id]
             actual = settle_market(
                 market, comparison["line"], outcome["home_points"], outcome["away_points"]

@@ -28,6 +28,8 @@ sys.path.insert(0, {str(tmp_path)!r})
 def inspect_entry(frame, event, arg):
     if (event == "call" and frame.f_code.co_name == "run"
             and frame.f_globals.get("__name__") == "nbaprob.app"):
+        from streamlit.file_util import file_in_pythonpath
+        assert file_in_pythonpath(frame.f_code.co_filename)
         print(frame.f_code.co_filename)
         raise SystemExit(0)
 sys.setprofile(inspect_entry)

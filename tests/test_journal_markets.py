@@ -12,6 +12,7 @@ def forecast(market="moneyline", line=None, *, game_id="g", probability=0.6, ide
     comparison = {
         "market": market,
         "line": line,
+        "quoted_at": "2026-10-19T07:00:00Z",
         "decision": "insufficient_evidence",
         "candidate": None,
         "sides": [
@@ -81,6 +82,7 @@ def test_market_reports_keep_markets_separate_and_latest_line_without_lookahead(
     latest.update(identity="d", as_of="2026-10-19T08:00:00Z", issued_at="2026-10-19T08:01:00Z")
     payload = json.loads(latest["payload"])
     payload["house_comparison"]["line"] = -10
+    payload["house_comparison"]["quoted_at"] = "2026-10-19T08:00:00Z"
     latest["payload"] = json.dumps(payload)
     rows.append(latest)
     retrospective = deepcopy(rows[0])
@@ -129,6 +131,13 @@ def test_synthetic_stale_and_missing_prices_do_not_create_claimed_returns(config
     assert report["picks"]["house"]["priced_picks"] == 0
     assert report["picks"]["house"]["paper_roi"] is None
     assert result["details"][0]["model_result"] == "no_pick"
+
+
+def test_price_must_be_fresh_at_actual_issue_time_not_only_historical_asof(config):
+    row = forecast()
+    row["issued_at"] = "2026-10-19T08:00:00Z"
+    result = market_scores([row], {"g": {"home_points": 110, "away_points": 100}}, config)
+    assert result["markets"]["moneyline"]["settled_games"] == 0
 
 
 def test_history_ui_displays_settled_market_scores_and_pushes(config, tmp_path, monkeypatch):
