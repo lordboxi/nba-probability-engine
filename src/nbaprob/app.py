@@ -10,6 +10,7 @@ import streamlit as st
 
 from nbaprob.analysis import STARTING_POSITIONS, analyze_forecast
 from nbaprob.config import load_config
+from nbaprob.data.bootstrap import bootstrap_snapshots
 from nbaprob.data.journal import history, journal_scores, record_outcome, save_forecast
 from nbaprob.data.nba_stats import NBAStatsAdapter
 from nbaprob.data.schema import utc
@@ -499,6 +500,14 @@ def main():
     st.title("NBA Probability Engine")
     st.caption("เลือกคู่แข่ง • เลือกคนลงเอง • เทียบโอกาสกับ House")
     config = load_config(os.environ.get("NBA_CONFIG", "config/default.yaml"))
+    if os.environ.get("NBA_CLOUD_MODE") == "1":
+        if "cloud_seeded" not in st.session_state:
+            bootstrap_snapshots(config, "deployment/seed_snapshots")
+            st.session_state["cloud_seeded"] = True
+        st.warning(
+            "Cloud: ประวัติและไฟล์ที่เพิ่มอาจหายเมื่อแอปรีสตาร์ท "
+            "กรุณาดาวน์โหลดประวัติ JSON เก็บไว้ ยังไม่ได้เชื่อมฐานข้อมูลถาวร"
+        )
     year = datetime.now(UTC).year - (datetime.now(UTC).month < 7)
     current_season = f"{year}-{(year + 1) % 100:02d}"
     previous_year = year - 1

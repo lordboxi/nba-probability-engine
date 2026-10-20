@@ -1,0 +1,134 @@
+{
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Jayson Tatum",
+      "player_id": "1628369",
+      "position": "F-G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "4",
+      "name": "Mitchell Robinson",
+      "player_id": "1629011",
+      "position": "C-F",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "9",
+      "name": "Derrick White",
+      "player_id": "1628401",
+      "position": "G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "11",
+      "name": "Payton Pritchard",
+      "player_id": "1630202",
+      "position": "G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "12",
+      "name": "Chris Cenac Jr.",
+      "player_id": "1643416",
+      "position": "F",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "13",
+      "name": "Ron Harper Jr.",
+      "player_id": "1631199",
+      "position": "G-F",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "13",
+      "name": "Paul George",
+      "player_id": "202331",
+      "position": "F",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "20",
+      "name": "Dillon Mitchell",
+      "player_id": "1641759",
+      "position": "F",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "22",
+      "name": "Devin Carter",
+      "player_id": "1642269",
+      "position": "G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "27",
+      "name": "Jordan Walsh",
+      "player_id": "1641775",
+      "position": "G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "28",
+      "name": "Hugo González",
+      "player_id": "1642864",
+      "position": "G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "30",
+      "name": "Sam Hauser",
+      "player_id": "1630573",
+      "position": "F",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "45",
+      "name": "Mike Conley",
+      "player_id": "201144",
+      "position": "G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "52",
+      "name": "Luka Garza",
+      "player_id": "1630568",
+      "position": "C",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "55",
+      "name": "Baylor Scheierman",
+      "player_id": "1631248",
+      "position": "G",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "77",
+      "name": "Amari Williams",
+      "player_id": "1642873",
+      "position": "F-C",
+      "team_id": "1610612738"
+    },
+    {
+      "jersey": "88",
+      "name": "Neemias Queta",
+      "player_id": "1629674",
+      "position": "C",
+      "team_id": "1610612738"
+    }
+  ],
+  "imported": false,
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-19T08:51:42.967488+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612738",
+  "team_id": "1610612738",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse",
+  "origin_snapshot_identity": "d57589a85a8f337fea84d435455b8ccf41499cd78cfbdd2c33dd304f823b100e"
+}
