@@ -1,6 +1,6 @@
 # GitHub repository
 
-Repository นี้เป็น Private มีเฉพาะเจ้าของและคนที่ได้รับเชิญเข้าถึงซอร์สโค้ด
+Repository นี้เป็น Public ทุกคนสามารถอ่านและ clone ซอร์สโค้ดได้
 ไม่มีการเปิด GitHub Pages หรือ public tunnel
 ไฟล์สำหรับ Streamlit Community Cloud อยู่ใน `deployment/` โดยตั้งใจให้ deploy แอปแบบ Private
 

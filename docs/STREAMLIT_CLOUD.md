@@ -1,6 +1,6 @@
 # Deploy บน Streamlit Community Cloud
 
-- Repository: `lordboxi/nba-probability-engine` (Private)
+- Repository: `lordboxi/nba-probability-engine` (Public)
 - Branch: `main`
 - Main file path: `deployment/streamlit_app.py`
 - Python version ใน Advanced settings: `3.11`

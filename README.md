@@ -5,7 +5,7 @@
 มี v1 baseline สำหรับ backtest และหน้าจอทดลองสำหรับสถิติ NBA, เลือกผู้เล่นเอง และเทียบ House
 ไม่มีระบบรับหรือส่งเดิมพัน
 
-Repository เป็น Private; การ deploy Streamlit Community Cloud ใช้การตั้งสิทธิ์แอปเป็น Private
+Repository เป็น Public; การ deploy Streamlit Community Cloud ใช้การตั้งสิทธิ์แอปเป็น Private
 อ่าน [วิธี clone และเปิดใช้งานจาก GitHub](docs/GITHUB_SETUP.md)
 และ [วิธี deploy บน Streamlit Community Cloud](docs/STREAMLIT_CLOUD.md)
 
