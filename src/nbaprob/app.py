@@ -411,17 +411,33 @@ def show_result(result, game):
             }
             for row in comparison["sides"]
         ]
-        st.dataframe(
-            pd.DataFrame(rows),
-            hide_index=True,
-            column_config={
-                name: st.column_config.NumberColumn(
-                    format="%.3f" if name.startswith("EV") else "%.1f"
-                )
-                for name in rows[0]
-                if name != "ฝั่ง"
-            },
-        )
+        probability_columns = ["ฝั่ง", "โมเดล (%)", "House ตัดน้ำ (%)", "ส่วนต่าง (จุด %)"]
+        price_columns = [
+            "ฝั่ง",
+            "ราคา Decimal ที่เสนอ",
+            "จุดคุ้มทุน (%)",
+            "ราคาเป็นกลางตามโมเดล",
+            "EV ต่อหน่วย",
+            "EV หลังทดสอบเงื่อนไขเข้มขึ้น",
+        ]
+        for columns in (probability_columns, price_columns):
+            st.dataframe(
+                pd.DataFrame(rows)[columns],
+                hide_index=True,
+                column_config={
+                    name: st.column_config.NumberColumn(
+                        format=(
+                            "%.2f"
+                            if name == "ราคา Decimal ที่เสนอ"
+                            else "%.3f"
+                            if name.startswith("EV") or name == "ราคาเป็นกลางตามโมเดล"
+                            else "%.1f"
+                        )
+                    )
+                    for name in columns
+                    if name != "ฝั่ง"
+                },
+            )
         st.caption(
             "พิจารณาราคาที่คุ้มค่าและความไม่แน่นอนร่วมกัน ส่วนต่างโอกาสสูงกว่า House อย่างเดียวไม่ได้รับรองผลตอบแทน"
         )
