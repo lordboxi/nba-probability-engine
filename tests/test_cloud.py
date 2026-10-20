@@ -1,4 +1,6 @@
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -9,6 +11,23 @@ from nbaprob.data.snapshots import latest_snapshot
 
 ROOT = Path(__file__).parents[1]
 SEEDS = ROOT / "deployment/seed_snapshots"
+
+
+def test_cloud_entrypoint_prefers_updated_checkout_to_previously_installed_wheel(tmp_path):
+    package = tmp_path / "nbaprob"
+    package.mkdir()
+    (package / "__init__.py").write_text("", encoding="utf-8")
+    (package / "app.py").write_text("raise RuntimeError('old installed wheel')", encoding="utf-8")
+    script = (
+        "import sys,runpy,importlib.util; "
+        f"sys.path.insert(0,{str(tmp_path)!r}); "
+        "runpy.run_module=lambda *a,**k: print(importlib.util.find_spec('nbaprob.app').origin); "
+        f"runpy.run_path({str(ROOT / 'deployment/streamlit_app.py')!r})"
+    )
+    completed = subprocess.run(
+        [sys.executable, "-c", script], capture_output=True, text=True, check=True
+    )
+    assert Path(completed.stdout.strip()).resolve() == ROOT / "src/nbaprob/app.py"
 
 
 def test_cloud_bootstrap_is_idempotent_and_preserves_observation_time(config):
