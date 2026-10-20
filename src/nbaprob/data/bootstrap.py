@@ -13,7 +13,8 @@ def bootstrap_snapshots(config, directory):
         if document.get("provider") != "NBA.com" or document.get("resource") not in {
             "teams",
             "roster",
+            "players",
         }:
-            raise ValueError("Bundled data must be an NBA team or roster snapshot")
+            raise ValueError("Bundled data must be an NBA team, roster or player snapshot")
         saved.append(save_snapshot(document, config)["identity"])
     return saved

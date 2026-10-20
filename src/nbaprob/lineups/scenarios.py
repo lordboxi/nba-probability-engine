@@ -166,6 +166,8 @@ def lineup_forecast(base, document, game, as_of, config):
         "probability_source": document["probability_source"],
         "reported_at": document["reported_at"],
         "synthetic": bool(document.get("synthetic", False)),
+        "statistics_provenance": document.get("statistics_provenance", {}),
+        "minutes_policy": document.get("minutes_policy"),
         "players": [
             {
                 **row,

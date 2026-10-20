@@ -23,6 +23,7 @@ uv export --locked --extra ui --no-dev --no-hashes --no-editable --output-file d
 
 `deployment/seed_snapshots/` มีเฉพาะ normalized NBA snapshots ที่เก็บไว้แล้ว
 ประกอบด้วยตาราง 2026–27 Preseason และ roster Boston/Atlanta ณ วันที่ 19 ตุลาคม 2026
+และสถิติผู้เล่น Preseason 577 แถวที่อ่านจากตาราง NBA จริงวันที่ 20 ตุลาคม 2026
 เก็บ source URL, เวลาที่ดึงจริง และ hash ของ snapshot ต้นทางไว้
 ไฟล์ raw responses ต้นทางยังอยู่ในเครื่องเดิม ไม่รวมประวัติ/ราคา House ส่วนตัว
 เมื่อ Cloud เริ่มทำงานจะลงทะเบียน snapshots ในฐานข้อมูลของโฮสต์ โดยไม่ย้อนหลังเวลา
@@ -30,8 +31,9 @@ uv export --locked --extra ui --no-dev --no-hashes --no-editable --output-file d
 
 ## ข้อจำกัดที่ยังมี
 
-SQLite, ประวัติคำทำนาย, ผลจริงและ snapshots ที่เพิ่มขณะรันอยู่ในดิสก์ชั่วคราวของ Cloud
+เมื่อยังไม่ตั้งค่า Supabase: SQLite, ประวัติ ผลจริงและ snapshots อยู่ในดิสก์ชั่วคราวของ Cloud
 ไม่รับประกันว่าจะคงอยู่หลัง reboot/redeploy/hibernate ให้ดาวน์โหลดประวัติ JSON เก็บไว้
-ยังไม่ได้เชื่อมฐานข้อมูลถาวรภายนอก และยังไม่มีระบบแยก workspace ต่อผู้ใช้
+เชื่อมฐานข้อมูลถาวรได้ตาม [คู่มือ Supabase](SUPABASE.md) โดยแอปจะแสดง backend ที่ใช้อยู่
+ยังไม่มีระบบแยก workspace ต่อผู้ใช้
 ดังนั้นแอปรุ่นนี้ตั้งใจให้เจ้าของหรือทีมที่ได้รับเชิญใช้งานใน workspace เดียวกันแบบ Private
 NBA endpoints อาจ timeout จากโฮสต์เช่นเดียวกับเครื่องเดิม ใช้ snapshot/นำเข้าไฟล์เป็นทางสำรอง

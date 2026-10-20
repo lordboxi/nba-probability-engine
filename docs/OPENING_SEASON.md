@@ -78,6 +78,7 @@ assisted_p = model_weight * independent_p + (1-model_weight) * house_fair_p
 เทียบ Brier, log loss และ accuracy ของโมเดล/House/assisted บนเกม Moneyline ชุดเดียวกัน
 รายงานเชิงพรรณนาเหล่านี้ยังไม่ใช่ acceptance gate หรือหลักฐานกำไร/CLV
 ยังไม่มี auto-retraining, แหล่งผลจริงอัตโนมัติ หรือการประเมิน spread/total ใน journal
+รองรับฐานข้อมูล Supabase และสถิติผู้เล่น/ตัวแก้นาทีบนเว็บแล้ว ดู `SUPABASE.md` และ `PLAYER_STATS.md`
 
 ```powershell
 uv run nbaprob matchup --season 2026-27 --season-type 'Regular Season' --home-team-id 1610612738 --away-team-id 1610612737 --tipoff '2026-10-20T00:00:00Z' --as-of '2026-10-19T12:00:00Z' --house examples/house_odds.json --use-market-prior --record

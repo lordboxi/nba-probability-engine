@@ -28,6 +28,8 @@ uv run --extra ui streamlit run src/nbaprob/app.py --server.address 127.0.0.1
 มี NBA Traditional snapshot ฤดูกาล 2026–27 Preseason และ roster Boston/Atlanta ที่อ่านจริงเก็บไว้แล้ว
 endpoint สถิติทีมโดยตรงยังพบ timeout จากเครื่องนี้; ใช้ cached snapshot/นำเข้าไฟล์ได้
 รายชื่ออย่างเดียวบันทึกการเลือก แต่การปรับ probability ตามผู้เล่นต้องมี impact ratings เพิ่ม
+เพิ่มตารางสถิติผู้เล่น NBA และตัวแก้นาที/เรตติ้งในหน้าเว็บแล้ว อ่าน [คู่มือสถิติผู้เล่น](docs/PLAYER_STATS.md)
+รองรับ [Supabase สำหรับสถิติและประวัติถาวร](docs/SUPABASE.md) ผ่าน server Secrets
 อ่าน [คู่มือข้อมูล NBA และการเทียบ House](docs/NBA_DATA_AND_COMPARISON.md) สำหรับรายละเอียด
 
 ## เริ่มใช้งานบน PowerShell

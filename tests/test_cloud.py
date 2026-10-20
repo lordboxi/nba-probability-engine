@@ -15,7 +15,7 @@ def test_cloud_bootstrap_is_idempotent_and_preserves_observation_time(config):
     local_data = Path(config["data"]["database"])
     local_data.write_bytes(b"owner data must not be changed")
     first = bootstrap_snapshots(config, SEEDS)
-    assert len(first) == 3
+    assert len(first) == 4
     assert bootstrap_snapshots(config, SEEDS) == first
     assert local_data.read_bytes() == b"owner data must not be changed"
     document = json.loads((SEEDS / "teams-preseason.json").read_text(encoding="utf-8"))
@@ -31,7 +31,7 @@ def test_cloud_seed_bundle_contains_only_nba_statistics(config, tmp_path):
     for path in SEEDS.glob("*.json"):
         document = json.loads(path.read_text(encoding="utf-8"))
         assert document["provider"] == "NBA.com"
-        assert document["resource"] in {"teams", "roster"}
+        assert document["resource"] in {"teams", "roster", "players"}
         assert "house_quote" not in document
         assert "roster_selection" not in document
     (tmp_path / "private.json").write_text('{"resource":"journal"}', encoding="utf-8")

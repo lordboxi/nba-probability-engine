@@ -148,7 +148,9 @@ def analyze_forecast(
     elif use_market_prior:
         raise ValueError("Market-assisted mode requires a House quote")
     output["config_hash"] = hashlib.sha256(
-        yaml.safe_dump(config, sort_keys=True).encode()
+        yaml.safe_dump(
+            {key: value for key, value in config.items() if not key.startswith("_")}, sort_keys=True
+        ).encode()
     ).hexdigest()
     output["model_validation"] = "Not yet validated on real NBA holdout data"
     # Validate serialization before UI/download writers receive a partial result.

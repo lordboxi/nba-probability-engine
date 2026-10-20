@@ -8,6 +8,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from nbaprob.data.schema import utc
+from nbaprob.data.supabase_store import remote_store
 from nbaprob.eval.metrics import binary_scores
 
 
@@ -37,6 +38,22 @@ def save_forecast(result, game, config):
         raise ValueError("Journal requires a matching pregame forecast")
     payload = json.dumps(result, sort_keys=True, ensure_ascii=False, allow_nan=False)
     identity = hashlib.sha256(payload.encode()).hexdigest()
+    store = remote_store(config)
+    if store is not None:
+        store.request(
+            "nba_forecasts",
+            query={"on_conflict": "workspace,identity"},
+            row={
+                "identity": identity,
+                "game_id": game.game_id,
+                "tipoff": utc(game.date).isoformat(),
+                "as_of": utc(result["as_of"]).isoformat(),
+                "home_team": game.home_team,
+                "away_team": game.away_team,
+                "payload": payload,
+            },
+        )
+        return identity
     with journal(config) as connection:
         connection.execute(
             "INSERT OR IGNORE INTO forecasts VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -63,6 +80,23 @@ def record_outcome(config, game_id, home_points, away_points, recorded_at):
     at = utc(recorded_at)
     if at > utc(datetime.now(UTC)):
         raise ValueError("Outcome recording time cannot be in the future")
+    store = remote_store(config)
+    if store is not None:
+        games = store.request(
+            "nba_forecasts", query={"game_id": f"eq.{game_id}", "select": "tipoff", "limit": 1}
+        )
+        if not games or at <= utc(games[0]["tipoff"]):
+            raise ValueError("Record a final outcome only for a saved game after tipoff")
+        store.request(
+            "nba_outcomes",
+            row={
+                "game_id": game_id,
+                "recorded_at": at.isoformat(),
+                "home_points": home_points,
+                "away_points": away_points,
+            },
+        )
+        return
     with journal(config) as connection:
         game = connection.execute(
             "SELECT tipoff FROM forecasts WHERE game_id=? LIMIT 1", (game_id,)
@@ -76,6 +110,11 @@ def record_outcome(config, game_id, home_points, away_points, recorded_at):
 
 
 def history(config):
+    store = remote_store(config)
+    if store is not None:
+        forecasts = store.rows("nba_forecasts", "as_of.asc,identity.asc")
+        outcomes = store.rows("nba_outcomes", "recorded_at.asc,game_id.asc")
+        return forecasts, {row["game_id"]: row for row in outcomes}
     with journal(config) as connection:
         forecasts = [
             dict(row)

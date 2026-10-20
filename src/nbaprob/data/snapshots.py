@@ -7,6 +7,7 @@ from contextlib import closing
 from pathlib import Path
 
 from nbaprob.data.schema import utc
+from nbaprob.data.supabase_store import remote_store
 
 
 def save_snapshot(document, config):
@@ -15,6 +16,22 @@ def save_snapshot(document, config):
     document["retrieved_at"] = observed.isoformat()
     serialized = json.dumps(document, sort_keys=True, ensure_ascii=False, allow_nan=False)
     identity = hashlib.sha256(serialized.encode()).hexdigest()
+    store = remote_store(config)
+    if store is not None:
+        store.request(
+            "nba_snapshots",
+            query={"on_conflict": "workspace,identity"},
+            row={
+                "identity": identity,
+                "resource": document["resource"],
+                "season": document["season"],
+                "season_type": document.get("season_type", ""),
+                "team_id": str(document.get("team_id", "")),
+                "observed": observed.isoformat(),
+                "payload": serialized,
+            },
+        )
+        return {"identity": identity, "path": None, "rows": len(document["data"])}
     directory = Path(config["feed"]["snapshot_directory"])
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / f"{identity}.json"
@@ -43,6 +60,27 @@ def save_snapshot(document, config):
 
 
 def latest_snapshot(config, resource, season, as_of, season_type="", team_id=""):
+    store = remote_store(config)
+    if store is not None:
+        rows = store.request(
+            "nba_snapshots",
+            query={
+                "select": "identity,payload",
+                "resource": f"eq.{resource}",
+                "season": f"eq.{season}",
+                "season_type": f"eq.{season_type}",
+                "team_id": f"eq.{team_id}",
+                "observed": f"lte.{utc(as_of).isoformat()}",
+                "order": "observed.desc,identity.desc",
+                "limit": 1,
+            },
+        )
+        if not rows:
+            return None
+        payload, identity = rows[0]["payload"], rows[0]["identity"]
+        if hashlib.sha256(payload.encode()).hexdigest() != identity:
+            raise ValueError("Snapshot content hash mismatch")
+        return {**json.loads(payload), "identity": identity}
     database = Path(config["feed"]["snapshot_database"])
     if not database.exists():
         return None

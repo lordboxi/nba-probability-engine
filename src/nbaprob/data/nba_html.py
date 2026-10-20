@@ -141,3 +141,71 @@ def roster_from_html(html, team_id):
             }
         ]
     }
+
+
+def players_from_html(html, season, season_type):
+    reader = TableReader()
+    reader.feed(html)
+    if reader.selected_values[:3] != [season, season_type, "PerGame"]:
+        raise ValueError("NBA player webpage filters must match season/type/PerGame")
+    aliases = {
+        "PLAYER": "PLAYER_NAME",
+        "GP": "GP",
+        "MIN": "MIN",
+        "PTS": "PTS",
+        "REB": "REB",
+        "AST": "AST",
+        "STL": "STL",
+        "BLK": "BLK",
+        "TOV": "TOV",
+        "FGM": "FGM",
+        "FGA": "FGA",
+        "3PM": "FG3M",
+        "3PA": "FG3A",
+        "FTM": "FTM",
+        "FTA": "FTA",
+        "+/-": "PLUS_MINUS",
+    }
+    for table in reader.tables:
+        if not table or not {*aliases, "TEAM"}.issubset(table[0]["cells"]):
+            continue
+        headers, rows = table[0]["cells"], []
+        for row in table[1:]:
+            player = next(
+                (
+                    re.search(r"/player/(\d+)", link)
+                    for link in row["links"]
+                    if re.search(r"/player/(\d+)", link)
+                ),
+                None,
+            )
+            team = next(
+                (
+                    re.search(r"/team/(\d+)", link)
+                    for link in row["links"]
+                    if re.search(r"/team/(\d+)", link)
+                ),
+                None,
+            )
+            if not player:
+                continue
+            if not team:
+                raise ValueError("Player HTML row is missing its team ID; use NBA JSON")
+            values = [player.group(1), team.group(1)]
+            for label in aliases:
+                index = headers.index(label)
+                if index >= len(row["cells"]):
+                    raise ValueError("NBA player HTML is missing a required cell")
+                value = row["cells"][index]
+                values.append(value if label == "PLAYER" else float(value.replace(",", "")))
+            rows.append(values)
+        return {
+            "resultSets": [
+                {
+                    "name": "LeagueDashPlayerStats",
+                    "headers": ["PLAYER_ID", "TEAM_ID", *aliases.values()],
+                    "rowSet": rows,
+                }
+            ]
+        }
+    raise ValueError("NBA webpage did not contain a rendered player Traditional table")

@@ -16,8 +16,10 @@ from nbaprob.data.nba_stats import NBAStatsAdapter
 from nbaprob.data.schema import utc
 from nbaprob.data.snapshots import latest_snapshot, save_snapshot
 from nbaprob.data.store import load_tables
+from nbaprob.data.supabase_store import remote_store
 from nbaprob.features.build import ReplayEngine
 from nbaprob.models.team_snapshot import matchup_forecast
+from nbaprob.player_ui import player_analysis_panel, player_data_panel
 
 
 def now():
@@ -35,6 +37,7 @@ def nba_panel(config, season, season_type):
     if adapter_key not in st.session_state:
         st.session_state[adapter_key] = NBAStatsAdapter(config)
     adapter = st.session_state[adapter_key]
+    player_data_panel(config, season, season_type, now(), adapter)
     previous_year = int(season[:4]) - 1
     previous_season = f"{previous_year}-{(previous_year + 1) % 100:02d}"
     with st.expander(f"ฐานข้อมูลฤดูกาลก่อน {previous_season} สำหรับช่วงเปิดฤดูกาล"):
@@ -133,7 +136,12 @@ def roster_panel(config, game, season, as_of, *, team_ids=None, synthetic=False)
             snapshot = latest_snapshot(config, "roster", season, as_of, team_id=team_id)
             if snapshot:
                 all_players.extend(
-                    {"player_id": row["player_id"], "name": row["name"], "team": team}
+                    {
+                        "player_id": row["player_id"],
+                        "name": row["name"],
+                        "team": team,
+                        "team_id": str(team_id),
+                    }
                     for row in snapshot["data"]
                 )
     selections = []
@@ -278,6 +286,29 @@ def show_result(result, game):
     st.caption("โมเดลยังไม่ผ่านการยืนยันความแม่นยำด้วย NBA holdout จริง")
     if result.get("roster_selection") and not result["lineup_adjustment_applied"]:
         st.info("บันทึกคนที่ลงแล้ว แต่ยังไม่ได้ปรับคะแนนผู้เล่น เพราะไม่มี impact rating แนบมา")
+    if result["lineup_adjustment_applied"]:
+        lineup = result["lineup"]
+        st.caption(
+            f"ปรับจากโอกาสชนะก่อนเปลี่ยน rotation {lineup['baseline_p_home_win']:.1%} "
+            f"· แหล่งเรตติ้ง: {lineup['rating_source']}"
+        )
+        with st.expander("นาทีผู้เล่นที่ใช้คำนวณ"):
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {
+                            "ผู้เล่น": row.get("name", row["player_id"]),
+                            "ทีม": row["team"],
+                            "นาทีฐาน": row["baseline_minutes"],
+                            "นาทีที่ใช้": row["weighted_minutes"],
+                            "ผลกระทบเกมรุก": row["offense_impact"],
+                            "ผลกระทบเกมรับ": row["defense_impact"],
+                        }
+                        for row in lineup["players"]
+                    ]
+                ),
+                hide_index=True,
+            )
     if "market_assisted" in result:
         assisted = result["market_assisted"]
         names = {"home": game.home_team, "away": game.away_team, "over": "สูง", "under": "ต่ำ"}
@@ -500,14 +531,34 @@ def main():
     st.title("NBA Probability Engine")
     st.caption("เลือกคู่แข่ง • เลือกคนลงเอง • เทียบโอกาสกับ House")
     config = load_config(os.environ.get("NBA_CONFIG", "config/default.yaml"))
+    try:
+        storage = st.secrets.get("nba_storage", {})
+    except FileNotFoundError:
+        storage = {}
+    for field, name in (
+        ("url", "NBA_SUPABASE_URL"),
+        ("secret_key", "NBA_SUPABASE_SECRET_KEY"),
+        ("workspace", "NBA_WORKSPACE_ID"),
+    ):
+        if field in storage:
+            os.environ[name] = storage[field]
+    using_supabase = remote_store(config) is not None
+    if using_supabase:
+        st.caption("ฐานข้อมูล: Supabase · สถิติและประวัติเก็บถาวรใน workspace ของเจ้าของ")
     if os.environ.get("NBA_CLOUD_MODE") == "1":
-        if "cloud_seeded" not in st.session_state:
-            bootstrap_snapshots(config, "deployment/seed_snapshots")
-            st.session_state["cloud_seeded"] = True
-        st.warning(
-            "Cloud: ประวัติและไฟล์ที่เพิ่มอาจหายเมื่อแอปรีสตาร์ท "
-            "กรุณาดาวน์โหลดประวัติ JSON เก็บไว้ ยังไม่ได้เชื่อมฐานข้อมูลถาวร"
+        seed_target = (
+            os.environ.get("NBA_SUPABASE_URL", "sqlite"),
+            os.environ.get("NBA_WORKSPACE_ID", "nba-owner"),
+            4,
         )
+        if st.session_state.get("cloud_seeded") != seed_target:
+            bootstrap_snapshots(config, "deployment/seed_snapshots")
+            st.session_state["cloud_seeded"] = seed_target
+        if not using_supabase:
+            st.warning(
+                "Cloud: ประวัติและไฟล์ที่เพิ่มอาจหายเมื่อแอปรีสตาร์ท "
+                "กรุณาดาวน์โหลดประวัติ JSON เก็บไว้ ยังไม่ได้เชื่อมฐานข้อมูลถาวร"
+            )
     year = datetime.now(UTC).year - (datetime.now(UTC).month < 7)
     current_season = f"{year}-{(year + 1) % 100:02d}"
     previous_year = year - 1
@@ -616,6 +667,9 @@ def main():
         selection, selection_ready = roster_panel(
             config, game, season, as_of, team_ids=team_ids, synthetic=synthetic
         )
+        player_lineup = player_analysis_panel(
+            config, game, season, season_type, as_of, selection, selection_ready
+        )
         with st.expander("ทางเลือกขั้นสูง: impact ratings / ผู้เล่นไม่แน่ใจ"):
             impact = st.file_uploader(
                 "Lineup scenario JSON (ไม่บังคับ)", type=["json"], key="impact_json"
@@ -629,12 +683,19 @@ def main():
             team_only = st.checkbox("วิเคราะห์ระดับทีมโดยยังไม่ระบุตัวจริง", value=False)
         if not selection_ready and impact is None and not team_only:
             st.info("เลือกตัวจริงให้ครบทั้งสองทีมก่อนคำนวณ")
+        missing_impact_source = (
+            selection_ready
+            and st.session_state.get("use_player_impacts", False)
+            and player_lineup is None
+            and impact is None
+        )
         if st.button(
             "คำนวณและเปรียบเทียบ",
             type="primary",
-            disabled=not selection_ready and impact is None and not team_only,
+            disabled=missing_impact_source
+            or (not selection_ready and impact is None and not team_only),
         ):
-            lineup = json.loads(impact.getvalue()) if impact is not None else None
+            lineup = json.loads(impact.getvalue()) if impact is not None else player_lineup
             if lineup is not None:
                 lineup.setdefault("game_id", game.game_id)
             result = analyze_forecast(

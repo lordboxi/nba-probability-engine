@@ -11,7 +11,7 @@ from urllib.request import Request, urlopen
 import numpy as np
 import pandas as pd
 
-from nbaprob.data.nba_html import roster_from_html, teams_from_html
+from nbaprob.data.nba_html import players_from_html, roster_from_html, teams_from_html
 
 SEASON_TYPES = {
     "Preseason": "Pre Season",
@@ -100,6 +100,61 @@ def normalize_roster(payload, team_id):
     ]
 
 
+def normalize_players(payload):
+    """Per-game box scores, keyed by player AND team to preserve traded-player stints."""
+    frame = result_frame(payload, "LeagueDashPlayerStats")
+    columns = {
+        "PLAYER_ID": "player_id",
+        "PLAYER_NAME": "name",
+        "TEAM_ID": "team_id",
+        "GP": "gp",
+        "MIN": "minutes",
+        "PTS": "points",
+        "REB": "rebounds",
+        "AST": "assists",
+        "STL": "steals",
+        "BLK": "blocks",
+        "TOV": "turnovers",
+        "FGM": "fgm",
+        "FGA": "fga",
+        "FG3M": "fg3m",
+        "FG3A": "fg3a",
+        "FTM": "ftm",
+        "FTA": "fta",
+        "PLUS_MINUS": "plus_minus",
+    }
+    if not set(columns).issubset(frame.columns):
+        raise ValueError(f"NBA player table requires {sorted(columns)}")
+    frame = frame[list(columns)].rename(columns=columns)
+    if frame[["player_id", "name", "team_id"]].isna().any().any():
+        raise ValueError("Player identifiers and names must be present")
+    for column in ("player_id", "team_id"):
+        frame[column] = frame[column].astype(str)
+        if not frame[column].str.fullmatch(r"\d+").all():
+            raise ValueError("NBA player/team IDs must be numeric")
+    if frame.duplicated(["player_id", "team_id"]).any():
+        raise ValueError("Duplicate NBA player/team row")
+    for column in set(columns.values()) - {"player_id", "team_id", "name"}:
+        frame[column] = pd.to_numeric(frame[column], errors="raise")
+        if not np.isfinite(frame[column]).all():
+            raise ValueError(f"Invalid player statistic: {column}")
+        if column != "plus_minus" and (frame[column] < 0).any():
+            raise ValueError(f"Negative player statistic: {column}")
+    if ((frame.gp % 1 != 0) | ((frame.gp > 0) & (frame.minutes <= 0))).any():
+        raise ValueError("Invalid player games/minutes")
+    for made, attempted in (("fgm", "fga"), ("fg3m", "fg3a"), ("ftm", "fta")):
+        if (frame[made] > frame[attempted]).any():
+            raise ValueError("Player makes cannot exceed attempts")
+    if ((frame.fg3m > frame.fgm) | (frame.fg3a > frame.fga)).any():
+        raise ValueError("Invalid player three-point totals")
+    # Missing attempts mean undefined efficiency, never a fabricated zero percent.
+    frame["efg_pct"] = (frame.fgm + 0.5 * frame.fg3m).div(frame.fga.where(frame.fga > 0))
+    frame["ts_pct"] = frame.points.div(
+        2 * (frame.fga + 0.44 * frame.fta).where(frame.fga + 0.44 * frame.fta > 0)
+    )
+    return frame.astype(object).where(pd.notna(frame), None).to_dict(orient="records")
+
+
 class NBAStatsAdapter:
     def __init__(self, config, transport=None):
         self.config = config
@@ -137,7 +192,7 @@ class NBAStatsAdapter:
 
     def fetch(self, resource, season, season_type="Preseason", team_id=None, imported_payload=None):
         season_valid(season)
-        if resource == "teams":
+        if resource in ("teams", "players"):
             if season_type not in SEASON_TYPES:
                 raise ValueError("Unknown season type")
             parameters = dict.fromkeys(
@@ -177,14 +232,20 @@ class NBAStatsAdapter:
                 Rank="N",
                 Period=0,
             )
-            endpoint = "leaguedashteamstats"
+            endpoint = "leaguedashteamstats" if resource == "teams" else "leaguedashplayerstats"
+            if resource == "players":
+                parameters.update(
+                    dict.fromkeys(
+                        ("College", "Country", "DraftPick", "DraftYear", "Height", "Weight"), ""
+                    )
+                )
         elif resource == "roster":
             if team_id is None or not str(team_id).isdigit():
                 raise ValueError("NBA team_id must be numeric")
             endpoint = "commonteamroster"
             parameters = {"Season": season, "TeamID": str(team_id), "LeagueID": "00"}
         else:
-            raise ValueError("NBA resource must be teams or roster")
+            raise ValueError("NBA resource must be teams, players or roster")
         url = self.config["feed"]["base_url"] + "/" + endpoint + "?" + urlencode(parameters)
         current = datetime.now(UTC)
         current_year = current.year - (current.month < 7)
@@ -210,16 +271,23 @@ class NBAStatsAdapter:
                 raise ValueError("Captured NBA webpage season/type does not match import options")
             if capture.get("per_mode") != "PerGame":
                 raise ValueError("Captured team table must be PerGame")
-            url = "https://www.nba.com/stats/teams/traditional"
+            if capture.get("resource", "teams") != resource:
+                raise ValueError("Captured NBA resource does not match import options")
+            page = "players" if resource == "players" else "teams"
+            url = f"https://www.nba.com/stats/{page}/traditional"
             acquisition = "visible_browser_table_capture"
         if isinstance(payload, str):
             payload = (
-                teams_from_html(payload, season, SEASON_TYPES[season_type])
-                if resource == "teams"
-                else roster_from_html(payload, team_id)
+                roster_from_html(payload, team_id)
+                if resource == "roster"
+                else (players_from_html if resource == "players" else teams_from_html)(
+                    payload, season, SEASON_TYPES[season_type]
+                )
             )
         data = (
-            normalize_teams(payload) if resource == "teams" else normalize_roster(payload, team_id)
+            normalize_roster(payload, team_id)
+            if resource == "roster"
+            else (normalize_players if resource == "players" else normalize_teams)(payload)
         )
         if not data:
             raise ValueError("NBA response is empty for the selected season/type/team")
@@ -227,7 +295,7 @@ class NBAStatsAdapter:
             "provider": "NBA.com",
             "resource": resource,
             "season": season,
-            "season_type": season_type if resource == "teams" else "",
+            "season_type": season_type if resource != "roster" else "",
             "team_id": str(team_id) if resource == "roster" else "",
             "retrieved_at": datetime.now(UTC).isoformat(),
             "source_url": url,

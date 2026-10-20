@@ -12,6 +12,7 @@ from nbaprob.config import load_config
 from nbaprob.data.demo import generate_demo
 from nbaprob.data.journal import save_forecast
 from nbaprob.data.loaders import CSVAdapter
+from nbaprob.data.migrate_supabase import migrate_local
 from nbaprob.data.nba_stats import NBAStatsAdapter
 from nbaprob.data.snapshots import latest_snapshot, save_snapshot
 from nbaprob.data.store import load_tables, save_tables
@@ -36,6 +37,7 @@ def parser():
         help="Record source and permitted usage; does not verify rights",
     )
     sub.add_parser("validate", help="Validate the configured database")
+    sub.add_parser("migrate-supabase", help="Copy local snapshots/history to NBA Supabase")
     backtest = sub.add_parser("backtest", help="Run and archive chronological walk-forward scores")
     backtest.add_argument("--start", help="Inclusive tipoff timestamp with timezone")
     backtest.add_argument("--end", help="Exclusive tipoff timestamp with timezone")
@@ -53,7 +55,7 @@ def parser():
         command.add_argument("--selection", help="Optional simple roster selection JSON")
         command.add_argument("--house", help="House probability/odds JSON for comparison")
     fetch = sub.add_parser("nba-fetch", help="Fetch NBA Traditional team stats or a team roster")
-    fetch.add_argument("resource", choices=["teams", "roster"])
+    fetch.add_argument("resource", choices=["teams", "roster", "players"])
     fetch.add_argument("--season", required=True, help="NBA season, e.g. 2026-27")
     fetch.add_argument(
         "--season-type", default="Preseason", choices=["Preseason", "Regular Season", "Playoffs"]
@@ -131,6 +133,9 @@ def main(argv=None):
     args = parser().parse_args(argv)
     try:
         config = load_config(args.config)
+        if args.command == "migrate-supabase":
+            print(json.dumps(migrate_local(config), indent=2))
+            return 0
         database = config["data"]["database"]
         if args.command == "nba-fetch":
             if args.import_json and args.import_html:
