@@ -63,6 +63,17 @@ def test_local_app_roster_selection_and_house_comparison(config, tables, tmp_pat
     assert sum(row["plays"] for row in selection["players"]) == 11
     assert sum(row["position"] == "PG" for row in selection["players"]) == 2
     assert all(row["position"] is None for row in selection["players"] if not row["starter"])
+    # Tabs rerun the app: keep the draft and its result, but hide stale results on edits.
+    app.session_state["active_tab"] = "ประวัติและผลจริง"
+    app.run(timeout=30)
+    assert any("สะสม 1 คำทำนาย" in item.value for item in app.markdown)
+    app.session_state["active_tab"] = "วิเคราะห์คู่แข่งขัน"
+    app.run(timeout=30)
+    assert app.selectbox(key=first_key).value == first_player
+    assert app.checkbox(key=reserve_key).value
+    assert json.loads(app.json[0].value) == result
+    app.selectbox(key=first_key).set_value(None).run(timeout=30)
+    assert not app.json and not app.metric
 
 
 def test_impact_editor_requires_source_and_records_rotation(config, tables, tmp_path, monkeypatch):

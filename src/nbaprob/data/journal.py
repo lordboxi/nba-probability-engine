@@ -126,8 +126,8 @@ def history(config):
     return forecasts, {row["game_id"]: row for row in outcomes}
 
 
-def journal_scores(config):
-    forecasts, outcomes = history(config)
+def journal_scores(config, *, entries=None):
+    forecasts, outcomes = history(config) if entries is None else entries
     # One latest pregame forecast per game, chosen without looking at its outcome.
     eligible = [
         row for row in forecasts if utc(row["as_of"]) <= utc(row["issued_at"]) < utc(row["tipoff"])

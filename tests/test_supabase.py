@@ -136,3 +136,73 @@ def test_explicit_migration_preserves_old_issue_times_and_score_revisions(config
     transferred = next(row for table, row in captured if table == "nba_forecasts")
     assert transferred["issued_at"] == forecasts[0]["issued_at"]
     assert len([row for table, row in captured if table == "nba_outcomes"]) == 2
+
+
+def test_snapshot_session_cache_preserves_cutoffs_scope_and_expiry(monkeypatch):
+    calls, clock, cache = [], [100.0], {}
+
+    def send(request, timeout):
+        calls.append(request)
+        cutoff = parse_qs(urlsplit(request.full_url).query)["observed"][0]
+        return io.BytesIO(json.dumps([{"cutoff": cutoff}]).encode())
+
+    monkeypatch.setattr("nbaprob.data.supabase_store.urlopen", send)
+    monkeypatch.setattr("nbaprob.data.supabase_store.monotonic", lambda: clock[0])
+    store = SupabaseStore("https://fixture.supabase.co", "sb_secret_fixture", "owner", cache)
+    query = {"limit": 1, "observed": "lte.2026-10-20T00:00:00Z"}
+    first = store.request("nba_snapshots", query=query)
+    first[0]["cutoff"] = "mutated by caller"
+    assert store.request("nba_snapshots", query=query)[0]["cutoff"] == query["observed"]
+    assert len(calls) == 1
+    earlier = {**query, "observed": "lte.2026-10-19T00:00:00Z"}
+    assert store.request("nba_snapshots", query=earlier)[0]["cutoff"] == earlier["observed"]
+    assert len(calls) == 2  # Earlier forecasts must not reuse later data.
+    for url, key, workspace in (
+        (store.url, store.key, "other-owner"),
+        (store.url, "sb_secret_other", store.workspace),
+        ("https://other.supabase.co", store.key, store.workspace),
+    ):
+        SupabaseStore(url, key, workspace, cache).request("nba_snapshots", query=query)
+    assert len(calls) == 5
+    assert "sb_secret_" not in repr(cache)
+    clock[0] += 61
+    store.request("nba_snapshots", query=query)
+    assert len(calls) == 6
+    cache.clear()  # Same action as the UI's explicit refresh.
+    store.request("nba_snapshots", query=query)
+    assert len(calls) == 7
+    for offset in range(100):
+        store.request("nba_snapshots", query={**query, "offset": offset})
+    assert len(cache) <= 64
+
+
+def test_snapshot_cache_invalidates_misses_on_write_and_retries_errors(monkeypatch):
+    cache, calls, fail = {}, [], [False]
+
+    def send(request, timeout):
+        calls.append(request)
+        if fail[0]:
+            raise TimeoutError()
+        return io.BytesIO(b"[]")
+
+    monkeypatch.setattr("nbaprob.data.supabase_store.urlopen", send)
+    store = SupabaseStore("https://fixture.supabase.co", "sb_secret_fixture", "owner", cache)
+    query = {"limit": 1, "observed": "lte.2026-10-20T00:00:00Z"}
+    assert store.request("nba_snapshots", query=query) == []
+    store.request("nba_snapshots", query=query)
+    assert len(calls) == 1
+    store.request("nba_snapshots", row={"identity": "new-snapshot"})
+    store.request("nba_snapshots", query=query)
+    assert len(calls) == 3
+    cache.clear()
+    fail[0] = True
+    for _ in range(2):
+        with pytest.raises(StorageError):
+            store.request("nba_snapshots", query=query)
+    assert len(calls) == 5 and not cache
+    fail[0] = False
+    store.request("nba_snapshots", query=query)
+    # Journal reads are fresh, even with a populated snapshot cache.
+    store.request("nba_forecasts", query={"limit": 1})
+    store.request("nba_forecasts", query={"limit": 1})
+    assert len(calls) == 8

@@ -3,6 +3,9 @@
 import json
 import os
 import re
+from copy import deepcopy
+from hashlib import sha256
+from time import monotonic
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -25,17 +28,29 @@ def remote_store(config):
         raise StorageError("Supabase requires a server-only secret key in Secrets")
     if not re.fullmatch(r"[a-zA-Z0-9_-]{1,80}", workspace):
         raise StorageError("Invalid server workspace identifier")
-    return SupabaseStore(url.rstrip("/"), key, workspace)
+    return SupabaseStore(url.rstrip("/"), key, workspace, config.get("_snapshot_cache"))
 
 
 class SupabaseStore:
-    def __init__(self, url, key, workspace):
+    def __init__(self, url, key, workspace, snapshot_cache=None):
         self.url, self.key, self.workspace = url, key, workspace
+        # The UI owns this bounded, per-session cache. CLI calls remain uncached.
+        self.snapshot_cache = snapshot_cache
+        self.cache_scope = (url, workspace, sha256(key.encode()).hexdigest())
 
     def request(self, table, *, query=None, row=None):
         if table not in {"nba_snapshots", "nba_forecasts", "nba_outcomes"}:
             raise StorageError("Unsupported NBA table")
         parameters = {**(query or {}), "workspace": f"eq.{self.workspace}"}
+        cache = self.snapshot_cache
+        cache_key = None
+        if cache is not None and table == "nba_snapshots" and row is None:
+            if parameters.get("limit") == 1:
+                # Include the exact observed/as-of filter: never round forecast cutoffs.
+                cache_key = (self.cache_scope, tuple(sorted(parameters.items())))
+                cached = cache.get(cache_key)
+                if cached is not None and cached[0] > monotonic():
+                    return deepcopy(cached[1])
         headers = {"apikey": self.key, "Accept": "application/json"}
         # Modern secret keys are not JWTs. Legacy service_role JWTs need Bearer too.
         if not self.key.startswith("sb_secret_"):
@@ -56,12 +71,26 @@ class SupabaseStore:
         try:
             with urlopen(request, timeout=20) as response:
                 data = response.read()
-                return json.loads(data) if data else []
+                result = json.loads(data) if data else []
         except (HTTPError, URLError, TimeoutError, OSError, ValueError):
             raise StorageError(
                 "Supabase read/write failed. Check project status, migration and server Secrets. "
                 "No local fallback was used; please retry after fixing the connection."
             ) from None
+        if cache is not None:
+            if table == "nba_snapshots" and row is not None:
+                # Refresh immediately after a successful import, including cached misses.
+                for key in list(cache):
+                    if key[0] == self.cache_scope:
+                        del cache[key]
+            elif cache_key is not None:
+                for key in list(cache):
+                    if cache[key][0] <= monotonic():
+                        del cache[key]
+                if len(cache) >= 64:
+                    del cache[next(iter(cache))]
+                cache[cache_key] = (monotonic() + 60, deepcopy(result))
+        return result
 
     def rows(self, table, order):
         rows, offset = [], 0

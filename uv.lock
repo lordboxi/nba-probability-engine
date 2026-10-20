@@ -462,7 +462,7 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6,<7" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.9,<1" },
     { name = "scipy", specifier = ">=1.13,<2" },
-    { name = "streamlit", marker = "extra == 'ui'", specifier = ">=1.50,<2" },
+    { name = "streamlit", marker = "extra == 'ui'", specifier = ">=1.66,<2" },
 ]
 provides-extras = ["dev", "ui"]
 

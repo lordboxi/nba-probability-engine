@@ -470,7 +470,7 @@ def history_panel(config):
         for row in forecasts
     ]
     st.dataframe(pd.DataFrame(rows), hide_index=True)
-    summary = journal_scores(config)
+    summary = journal_scores(config, entries=(forecasts, outcomes))
     st.write(
         f"สะสม {summary['saved_forecasts']} คำทำนาย / {summary['unique_games']} เกม · "
         f"มีผลจริงสำหรับประเมิน {summary['settled_games']} เกม"
@@ -531,6 +531,7 @@ def main():
     st.title("NBA Probability Engine")
     st.caption("เลือกคู่แข่ง • เลือกคนลงเอง • เทียบโอกาสกับ House")
     config = load_config(os.environ.get("NBA_CONFIG", "config/default.yaml"))
+    config["_snapshot_cache"] = st.session_state.setdefault("_snapshot_cache", {})
     try:
         storage = st.secrets.get("nba_storage", {})
     except FileNotFoundError:
@@ -562,26 +563,37 @@ def main():
     year = datetime.now(UTC).year - (datetime.now(UTC).month < 7)
     current_season = f"{year}-{(year + 1) % 100:02d}"
     previous_year = year - 1
-    has_nba = any(
-        latest_snapshot(config, "teams", candidate, now(), kind) is not None
-        for candidate, kind in (
-            (current_season, "Preseason"),
-            (current_season, "Regular Season"),
-            (f"{previous_year}-{year % 100:02d}", "Regular Season"),
+    if st.sidebar.button("รีเฟรชข้อมูลที่บันทึกไว้"):
+        config["_snapshot_cache"].clear()
+    if "matchup_source" not in st.session_state:
+        has_nba = any(
+            latest_snapshot(config, "teams", candidate, now(), kind) is not None
+            for candidate, kind in (
+                (current_season, "Preseason"),
+                (current_season, "Regular Season"),
+                (f"{previous_year}-{year % 100:02d}", "Regular Season"),
+            )
         )
-    )
+        st.session_state["matchup_source"] = "ตาราง NBA" if has_nba else "ข้อมูลในโปรเจกต์"
     source = st.sidebar.selectbox(
-        "แหล่งข้อมูลคู่แข่งขัน", ["ข้อมูลในโปรเจกต์", "ตาราง NBA"], index=1 if has_nba else 0
+        "แหล่งข้อมูลคู่แข่งขัน", ["ข้อมูลในโปรเจกต์", "ตาราง NBA"], key="matchup_source"
     )
     season = st.sidebar.text_input("ฤดูกาล NBA", value=current_season)
     season_type = st.sidebar.selectbox(
         "ประเภทการแข่งขัน", ["Preseason", "Regular Season", "Playoffs"], index=1
     )
-    analysis_tab, nba_tab, journal_tab = st.tabs(["วิเคราะห์คู่แข่งขัน", "ข้อมูล NBA", "ประวัติและผลจริง"])
-    with journal_tab:
-        history_panel(config)
-    with nba_tab:
-        nba_panel(config, season, season_type)
+    analysis_tab, nba_tab, journal_tab = st.tabs(
+        ["วิเคราะห์คู่แข่งขัน", "ข้อมูล NBA", "ประวัติและผลจริง"],
+        key="active_tab",
+        on_change="rerun",
+    )
+    if journal_tab.open:
+        with journal_tab:
+            history_panel(config)
+    if nba_tab.open:
+        with nba_tab:
+            nba_panel(config, season, season_type)
+    # Keep the analysis widgets mounted so changing tabs preserves lineup and House inputs.
     with analysis_tab:
         synthetic, team_ids = False, None
         if source == "ข้อมูลในโปรเจกต์":
@@ -689,6 +701,25 @@ def main():
             and player_lineup is None
             and impact is None
         )
+        draft = json.dumps(
+            [
+                base,
+                str(game),
+                selection,
+                player_lineup,
+                impact.getvalue().decode("utf-8") if impact is not None else None,
+                house,
+                synthetic,
+                use_market_prior,
+                team_only,
+                missing_impact_source,
+            ],
+            sort_keys=True,
+            default=str,
+        )
+        if st.session_state.get("analysis_draft") != draft:
+            st.session_state.pop("pending_analysis", None)
+        st.session_state["analysis_draft"] = draft
         if st.button(
             "คำนวณและเปรียบเทียบ",
             type="primary",
@@ -713,7 +744,7 @@ def main():
             st.session_state["pending_analysis"] = (result, game, identity)
             st.rerun()
         if "pending_analysis" in st.session_state:
-            result, result_game, identity = st.session_state.pop("pending_analysis")
+            result, result_game, identity = st.session_state["pending_analysis"]
             st.success(f"บันทึกคำทำนายและข้อมูล ณ เวลานี้แล้ว · {identity[:12]}")
             show_result(result, result_game)
 

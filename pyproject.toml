@@ -17,7 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
-ui = ["streamlit>=1.50,<2"]
+ui = ["streamlit>=1.66,<2"]
 
 [project.scripts]
 nbaprob = "nbaprob.cli:main"
