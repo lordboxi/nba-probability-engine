@@ -21,12 +21,17 @@ def test_cloud_entrypoint_prefers_updated_checkout_to_previously_installed_wheel
     package.mkdir()
     (package / "__init__.py").write_text("", encoding="utf-8")
     (package / "app.py").write_text("raise RuntimeError('old installed wheel')", encoding="utf-8")
-    script = (
-        "import sys,runpy,importlib.util; "
-        f"sys.path.insert(0,{str(tmp_path)!r}); "
-        "runpy.run_module=lambda *a,**k: print(importlib.util.find_spec('nbaprob.app').origin); "
-        f"runpy.run_path({str(ROOT / 'deployment/streamlit_app.py')!r})"
-    )
+    script = f"""
+import sys, runpy
+sys.path.insert(0, {str(tmp_path)!r})
+def inspect_entry(frame, event, arg):
+    if (event == "call" and frame.f_code.co_name == "run"
+            and frame.f_globals.get("__name__") == "nbaprob.app"):
+        print(frame.f_code.co_filename)
+        raise SystemExit(0)
+sys.setprofile(inspect_entry)
+runpy.run_path({str(ROOT / "deployment/streamlit_app.py")!r})
+"""
     completed = subprocess.run(
         [sys.executable, "-c", script], capture_output=True, text=True, check=True
     )

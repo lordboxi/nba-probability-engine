@@ -749,10 +749,15 @@ def main():
             show_result(result, result_game)
 
 
-if __name__ == "__main__":
+def run():
+    """Run the UI from either Streamlit entrypoint with shared error handling."""
     if "nba_asof_next" in st.session_state:
         st.session_state["nba_asof"] = st.session_state.pop("nba_asof_next")
     try:
         main()
     except (ValueError, OSError, KeyError, pd.errors.ParserError) as error:
         st.error(str(error))
+
+
+if __name__ == "__main__":
+    run()
