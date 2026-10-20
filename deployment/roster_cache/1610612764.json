@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Bilal Coulibaly",
+      "player_id": "1641731",
+      "position": "G",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "00",
+      "name": "Tristan Vukcevic",
+      "player_id": "1641774",
+      "position": "F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "1",
+      "name": "Tre Mann",
+      "player_id": "1630544",
+      "position": "G",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "3",
+      "name": "Trae Young",
+      "player_id": "1629027",
+      "position": "G",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "4",
+      "name": "AJ Dybantsa",
+      "player_id": "1643407",
+      "position": "F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "5",
+      "name": "Jamir Watkins",
+      "player_id": "1642364",
+      "position": "F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "7",
+      "name": "Bub Carrington",
+      "player_id": "1642267",
+      "position": "G",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "8",
+      "name": "Deandre Ayton",
+      "player_id": "1629028",
+      "position": "C",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "9",
+      "name": "Justin Champagnie",
+      "player_id": "1630551",
+      "position": "G-F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "12",
+      "name": "Tre Johnson",
+      "player_id": "1642848",
+      "position": "G",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "16",
+      "name": "Anthony Gill",
+      "player_id": "1630264",
+      "position": "F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "18",
+      "name": "Kyshawn George",
+      "player_id": "1642273",
+      "position": "F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "20",
+      "name": "Alex Sarr",
+      "player_id": "1642259",
+      "position": "C",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "22",
+      "name": "Khris Middleton",
+      "player_id": "203114",
+      "position": "F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "23",
+      "name": "Anthony Davis",
+      "player_id": "203076",
+      "position": "F-C",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "26",
+      "name": "Reece Beekman",
+      "player_id": "1641736",
+      "position": "G",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "27",
+      "name": "Will Riley",
+      "player_id": "1642860",
+      "position": "F",
+      "team_id": "1610612764"
+    },
+    {
+      "jersey": "34",
+      "name": "Felix Okpara",
+      "player_id": "1643590",
+      "position": "C",
+      "team_id": "1610612764"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "86c7bd71d039c0a4ed067d6e3e0fdc7152083694b1dfa3ad5aa79549d0913e4e",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:47:32.478713+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612764",
+  "team_id": "1610612764",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

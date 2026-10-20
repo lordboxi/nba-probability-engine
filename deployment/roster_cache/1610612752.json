@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Jaden Akins",
+      "player_id": "1643022",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "0",
+      "name": "Andre Drummond",
+      "player_id": "203083",
+      "position": "C",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "00",
+      "name": "Jordan Clarkson",
+      "player_id": "203903",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "2",
+      "name": "Miles McBride",
+      "player_id": "1630540",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "3",
+      "name": "Josh Hart",
+      "player_id": "1628404",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "4",
+      "name": "Pacôme Dadiet",
+      "player_id": "1642359",
+      "position": "F",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "5",
+      "name": "Jose Alvarado",
+      "player_id": "1630631",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "8",
+      "name": "OG Anunoby",
+      "player_id": "1628384",
+      "position": "F-G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "9",
+      "name": "Kevin McCullar Jr.",
+      "player_id": "1641755",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "11",
+      "name": "James Wiseman",
+      "player_id": "1630164",
+      "position": "C",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "11",
+      "name": "Jalen Brunson",
+      "player_id": "1628973",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "13",
+      "name": "Tyler Kolek",
+      "player_id": "1642278",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "25",
+      "name": "Mikal Bridges",
+      "player_id": "1628969",
+      "position": "G-F",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "32",
+      "name": "Karl-Anthony Towns",
+      "player_id": "1626157",
+      "position": "C-F",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "44",
+      "name": "Landry Shamet",
+      "player_id": "1629013",
+      "position": "G",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "51",
+      "name": "Mohamed Diawara",
+      "player_id": "1642885",
+      "position": "F",
+      "team_id": "1610612752"
+    },
+    {
+      "jersey": "55",
+      "name": "Tyler Nickel",
+      "player_id": "1643589",
+      "position": "F",
+      "team_id": "1610612752"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "6ff4fc72430279a7163d702dfdeb7756fd27325d954928bfd375acf745c4702d",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:45:42.354069+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612752",
+  "team_id": "1610612752",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

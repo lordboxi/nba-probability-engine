@@ -1,0 +1,128 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Nate Bittle",
+      "player_id": "1642927",
+      "position": "C",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "1",
+      "name": "Jamal Shead",
+      "player_id": "1642347",
+      "position": "G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "2",
+      "name": "Kawhi Leonard",
+      "player_id": "202695",
+      "position": "F",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "4",
+      "name": "Scottie Barnes",
+      "player_id": "1630567",
+      "position": "F-G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "5",
+      "name": "Immanuel Quickley",
+      "player_id": "1630193",
+      "position": "G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "8",
+      "name": "Jaden Bradley",
+      "player_id": "1643558",
+      "position": "G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "9",
+      "name": "RJ Barrett",
+      "player_id": "1629628",
+      "position": "F-G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "13",
+      "name": "Kyle Anderson",
+      "player_id": "203937",
+      "position": "F-G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "14",
+      "name": "Ja'Kobe Walter",
+      "player_id": "1642266",
+      "position": "G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "18",
+      "name": "Malachi Smith",
+      "player_id": "1641869",
+      "position": "G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "19",
+      "name": "Jakob Poeltl",
+      "player_id": "1627751",
+      "position": "C",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "22",
+      "name": "Allen Graves",
+      "player_id": "1643512",
+      "position": "F",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "30",
+      "name": "Collin Murray-Boyles",
+      "player_id": "1642867",
+      "position": "F",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "32",
+      "name": "Trayce Jackson-Davis",
+      "player_id": "1631218",
+      "position": "F",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "55",
+      "name": "Alijah Martin",
+      "player_id": "1642918",
+      "position": "G",
+      "team_id": "1610612761"
+    },
+    {
+      "jersey": "77",
+      "name": "Jamison Battle",
+      "player_id": "1642419",
+      "position": "F",
+      "team_id": "1610612761"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "7b2c12e7e97d6498d8b1f70a4cdb98874d948db0d02201914a4b865262e9d2b9",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:02.345364+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612761",
+  "team_id": "1610612761",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

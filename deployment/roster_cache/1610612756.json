@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Ryan Dunn",
+      "player_id": "1642346",
+      "position": "F",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "3",
+      "name": "Dillon Brooks",
+      "player_id": "1628415",
+      "position": "G-F",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "4",
+      "name": "Jalen Green",
+      "player_id": "1630224",
+      "position": "G",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "8",
+      "name": "Luke Kennard",
+      "player_id": "1628379",
+      "position": "G",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "10",
+      "name": "Khaman Maluach",
+      "player_id": "1642863",
+      "position": "C",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "11",
+      "name": "Oso Ighodaro",
+      "player_id": "1642345",
+      "position": "F",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "12",
+      "name": "Collin Gillespie",
+      "player_id": "1631221",
+      "position": "G",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "15",
+      "name": "Devin Booker",
+      "player_id": "1626164",
+      "position": "G",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "15",
+      "name": "Mark Williams",
+      "player_id": "1631109",
+      "position": "C",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "17",
+      "name": "Jamaree Bouyea",
+      "player_id": "1631123",
+      "position": "G",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "17",
+      "name": "Drew Timme",
+      "player_id": "1631166",
+      "position": "F",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "18",
+      "name": "Koa Peat",
+      "player_id": "1643520",
+      "position": "F",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "20",
+      "name": "Rasheer Fleming",
+      "player_id": "1642853",
+      "position": "F",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "22",
+      "name": "Miles Bridges",
+      "player_id": "1628970",
+      "position": "F",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "23",
+      "name": "Jordan Goodwin",
+      "player_id": "1630692",
+      "position": "G",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "26",
+      "name": "Duop Reath",
+      "player_id": "1641871",
+      "position": "C",
+      "team_id": "1610612756"
+    },
+    {
+      "jersey": "61",
+      "name": "Pat Spencer",
+      "player_id": "1630311",
+      "position": "G",
+      "team_id": "1610612756"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "4123e07607741ff6ce2285b5b8ddec7e81d6f409e0b709ec03374f433adf6734",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:17.427876+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612756",
+  "team_id": "1610612756",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

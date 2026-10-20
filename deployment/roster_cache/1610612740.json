@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Jeremiah Fears",
+      "player_id": "1642847",
+      "position": "G",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "1",
+      "name": "Zion Williamson",
+      "player_id": "1629627",
+      "position": "F",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "2",
+      "name": "Herbert Jones",
+      "player_id": "1630529",
+      "position": "F",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "3",
+      "name": "Jordan Poole",
+      "player_id": "1629673",
+      "position": "G",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "5",
+      "name": "Dejounte Murray",
+      "player_id": "1627749",
+      "position": "G",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "6",
+      "name": "DeAndre Jordan",
+      "player_id": "201599",
+      "position": "C",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "8",
+      "name": "Malik Dia",
+      "player_id": "1643738",
+      "position": "F",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "9",
+      "name": "Trendon Watford",
+      "player_id": "1630570",
+      "position": "G-F",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "10",
+      "name": "Jaron Pierre Jr.",
+      "player_id": "1643555",
+      "position": "G",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "11",
+      "name": "Bryce McGowens",
+      "player_id": "1631121",
+      "position": "G",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "13",
+      "name": "Julian Reese",
+      "player_id": "1642882",
+      "position": "F",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "14",
+      "name": "AJ Johnson",
+      "player_id": "1642358",
+      "position": "G",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "17",
+      "name": "Karlo Matković",
+      "player_id": "1631255",
+      "position": "F-C",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "21",
+      "name": "Yves Missi",
+      "player_id": "1642274",
+      "position": "C",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "22",
+      "name": "Derik Queen",
+      "player_id": "1642852",
+      "position": "C",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "24",
+      "name": "Bennedict Mathurin",
+      "player_id": "1631097",
+      "position": "G-F",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "25",
+      "name": "Trey Murphy III",
+      "player_id": "1630530",
+      "position": "F",
+      "team_id": "1610612740"
+    },
+    {
+      "jersey": "41",
+      "name": "Saddiq Bey",
+      "player_id": "1630180",
+      "position": "F",
+      "team_id": "1610612740"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "f5e5c29f99f18690067680eeaee45dfd9769f975af4572af11fb0711e026f1ce",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:47:02.497034+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612740",
+  "team_id": "1610612740",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

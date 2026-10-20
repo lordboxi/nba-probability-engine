@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Quadir Copeland",
+      "player_id": "1643595",
+      "position": "G",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "1",
+      "name": "Amen Thompson",
+      "player_id": "1641708",
+      "position": "G-F",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "2",
+      "name": "Bruce Thornton",
+      "player_id": "1643570",
+      "position": "G",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "4",
+      "name": "Julian Phillips",
+      "player_id": "1641763",
+      "position": "F",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "5",
+      "name": "Fred VanVleet",
+      "player_id": "1627832",
+      "position": "G",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "7",
+      "name": "Kevin Durant",
+      "player_id": "201142",
+      "position": "F",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "8",
+      "name": "Jae'Sean Tate",
+      "player_id": "1630256",
+      "position": "F",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "10",
+      "name": "Jabari Smith Jr.",
+      "player_id": "1631095",
+      "position": "F",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "12",
+      "name": "Steven Adams",
+      "player_id": "203500",
+      "position": "C",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "15",
+      "name": "Reed Sheppard",
+      "player_id": "1642263",
+      "position": "G",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "17",
+      "name": "Tari Eason",
+      "player_id": "1631106",
+      "position": "F",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "27",
+      "name": "Isaiah Crawford",
+      "player_id": "1642384",
+      "position": "F",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "28",
+      "name": "Alperen Sengun",
+      "player_id": "1630578",
+      "position": "C",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "30",
+      "name": "Clint Capela",
+      "player_id": "203991",
+      "position": "C",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "31",
+      "name": "Bogdan Bogdanović",
+      "player_id": "203992",
+      "position": "G",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "34",
+      "name": "Oscar Tshiebwe",
+      "player_id": "1631131",
+      "position": "F-C",
+      "team_id": "1610612745"
+    },
+    {
+      "jersey": "36",
+      "name": "Marcus Smart",
+      "player_id": "203935",
+      "position": "G",
+      "team_id": "1610612745"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "901d823e8386d78b97a97902fbf10e58d13e7ec6ca3025b5e1a966cd192f2882",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:48:22.159760+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612745",
+  "team_id": "1610612745",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

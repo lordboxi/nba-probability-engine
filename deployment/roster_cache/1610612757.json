@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Jayson Kent",
+      "player_id": "1643257",
+      "position": "F",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "0",
+      "name": "Damian Lillard",
+      "player_id": "203081",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "00",
+      "name": "Scoot Henderson",
+      "player_id": "1630703",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "1",
+      "name": "Ja Morant",
+      "player_id": "1629630",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "3",
+      "name": "Chris Youngblood",
+      "player_id": "1642959",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "5",
+      "name": "Jrue Holiday",
+      "player_id": "201950",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "8",
+      "name": "Deni Avdija",
+      "player_id": "1630166",
+      "position": "F",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "8",
+      "name": "John Tonje",
+      "player_id": "1642910",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "9",
+      "name": "Micah Potter",
+      "player_id": "1630695",
+      "position": "C",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "10",
+      "name": "Branden Carlson",
+      "player_id": "1642382",
+      "position": "C",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "16",
+      "name": "Yang Hansen",
+      "player_id": "1642905",
+      "position": "C",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "17",
+      "name": "Shaedon Sharpe",
+      "player_id": "1631101",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "23",
+      "name": "Donovan Clingan",
+      "player_id": "1642270",
+      "position": "C",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "27",
+      "name": "Vít Krejčí",
+      "player_id": "1630249",
+      "position": "G",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "33",
+      "name": "Toumani Camara",
+      "player_id": "1641739",
+      "position": "F",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "35",
+      "name": "Robert Williams III",
+      "player_id": "1629057",
+      "position": "C-F",
+      "team_id": "1610612757"
+    },
+    {
+      "jersey": "91",
+      "name": "Sidy Cissoko",
+      "player_id": "1631321",
+      "position": "G",
+      "team_id": "1610612757"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "7f10de54f26e107f1953fb5833c4c07eb6b54be739b0d2cc279e86f8e55b442c",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:37.417984+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612757",
+  "team_id": "1610612757",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

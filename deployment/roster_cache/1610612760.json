@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Josh Dix",
+      "player_id": "1643717",
+      "position": "",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "2",
+      "name": "Shai Gilgeous-Alexander",
+      "player_id": "1628983",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "3",
+      "name": "Jared McCain",
+      "player_id": "1642272",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "6",
+      "name": "Jaylin Williams",
+      "player_id": "1631119",
+      "position": "F",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "7",
+      "name": "Chet Holmgren",
+      "player_id": "1631096",
+      "position": "C-F",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "8",
+      "name": "Jalen Williams",
+      "player_id": "1631114",
+      "position": "G-F",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "9",
+      "name": "Alex Caruso",
+      "player_id": "1627936",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "12",
+      "name": "Thomas Sorber",
+      "player_id": "1642850",
+      "position": "C",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "13",
+      "name": "Otega Oweh",
+      "player_id": "1642923",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "14",
+      "name": "Bennett Stirtz",
+      "player_id": "1642892",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "15",
+      "name": "Aday Mara",
+      "player_id": "1643530",
+      "position": "C",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "22",
+      "name": "Cason Wallace",
+      "player_id": "1641717",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "23",
+      "name": "Brooks Barnhizer",
+      "player_id": "1642964",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "25",
+      "name": "Ajay Mitchell",
+      "player_id": "1642349",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "34",
+      "name": "Kenrich Williams",
+      "player_id": "1629026",
+      "position": "G-F",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "44",
+      "name": "Nikola Topić",
+      "player_id": "1642260",
+      "position": "G",
+      "team_id": "1610612760"
+    },
+    {
+      "jersey": "55",
+      "name": "Isaiah Hartenstein",
+      "player_id": "1628392",
+      "position": "C-F",
+      "team_id": "1610612760"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "00f67e739ffa49ff6f885822bc41a96341b576c5fdefc564b947541deeffaab6",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:45:12.461810+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612760",
+  "team_id": "1610612760",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

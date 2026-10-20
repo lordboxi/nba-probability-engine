@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Jahmai Mashack",
+      "player_id": "1642942",
+      "position": "G",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "",
+      "name": "Carson Cooper",
+      "player_id": "1643721",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "0",
+      "name": "Jaylen Wells",
+      "player_id": "1642377",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "1",
+      "name": "Scotty Pippen Jr.",
+      "player_id": "1630590",
+      "position": "G",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "2",
+      "name": "Ty Jerome",
+      "player_id": "1629660",
+      "position": "G-F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "3",
+      "name": "Jerami Grant",
+      "player_id": "203924",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "10",
+      "name": "Javon Small",
+      "player_id": "1642914",
+      "position": "G",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "14",
+      "name": "Zach Edey",
+      "player_id": "1641744",
+      "position": "C",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "17",
+      "name": "Kris Murray",
+      "player_id": "1631200",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "18",
+      "name": "Olivier-Maxence Prosper",
+      "player_id": "1641765",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "22",
+      "name": "Taylor Hendricks",
+      "player_id": "1641707",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "23",
+      "name": "Cedric Coward",
+      "player_id": "1642907",
+      "position": "G",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "24",
+      "name": "Cam Spencer",
+      "player_id": "1642285",
+      "position": "G",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "27",
+      "name": "Cameron Boozer",
+      "player_id": "1643409",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "28",
+      "name": "Isaiah Stewart",
+      "player_id": "1630191",
+      "position": "F-C",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "35",
+      "name": "Karim Lopez",
+      "player_id": "1643510",
+      "position": "F",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "41",
+      "name": "Quinten Post",
+      "player_id": "1642366",
+      "position": "C",
+      "team_id": "1610612763"
+    },
+    {
+      "jersey": "45",
+      "name": "GG Jackson",
+      "player_id": "1641713",
+      "position": "F",
+      "team_id": "1610612763"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "365f910f2b76e9da0c2874a9e8d1e56261da224ff0d1a7cd4b2577a48c600494",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:47:07.466957+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612763",
+  "team_id": "1610612763",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

@@ -14,6 +14,7 @@ from nbaprob.data.bootstrap import bootstrap_snapshots
 from nbaprob.data.journal import history, journal_scores, record_outcome, save_forecast
 from nbaprob.data.nba_stats import NBAStatsAdapter
 from nbaprob.data.outcomes_import import import_outcomes, outcomes_template, prepare_outcomes
+from nbaprob.data.rosters import latest_roster
 from nbaprob.data.schema import utc
 from nbaprob.data.snapshots import latest_snapshot, save_snapshot
 from nbaprob.data.store import load_tables
@@ -91,25 +92,48 @@ def nba_panel(config, season, season_type):
             st.error(str(error))
     snapshot = latest_snapshot(config, "teams", season, now(), season_type)
     if snapshot is None:
-        st.info("ยังไม่มีตารางสำหรับฤดูกาล/ประเภทนี้ ดึงข้อมูลหรือนำเข้า JSON ก่อน")
+        st.info("ยังไม่มีสถิติทีมสำหรับประเภทนี้ แต่เลือกทีมและโหลดรายชื่อผู้เล่นด้านล่างได้")
+    else:
+        st.caption(f"ข้อมูล ณ {snapshot['retrieved_at']} · {season} · {season_type}")
+        st.dataframe(
+            pd.DataFrame(snapshot["data"]).sort_values("win_pct", ascending=False), hide_index=True
+        )
+    catalog = snapshot or prior or latest_snapshot(config, "teams", season, now(), "Preseason")
+    st.subheader("รายชื่อผู้เล่นของทีม")
+    st.caption("รายชื่อปัจจุบันโหลดแยกจากสถิติทีม ไม่ต้องรอให้มีเกม Regular Season")
+    if catalog is None:
+        st.info("ยังไม่มีรายชื่อทีม นำเข้าสถิติทีมฤดูกาลก่อนหรือ Preseason เพื่อเลือกทีม")
         return
-    st.caption(f"ข้อมูล ณ {snapshot['retrieved_at']} · {season} · {season_type}")
-    st.dataframe(
-        pd.DataFrame(snapshot["data"]).sort_values("win_pct", ascending=False), hide_index=True
-    )
-    options = {row["team_id"]: row["team"] for row in snapshot["data"]}
+    options = {row["team_id"]: row["team"] for row in catalog["data"]}
     team_id = st.selectbox("ทีมที่ต้องการรายชื่อผู้เล่น", list(options), format_func=options.get)
-    if st.button("ดึงรายชื่อผู้เล่น", key="fetch_roster"):
+    st.markdown(f"[เปิดรายชื่อบน NBA.com](https://www.nba.com/team/{team_id})")
+    roster_file = st.file_uploader(
+        "นำเข้ารายชื่อ NBA JSON/HTML", type=["json", "html"], key="roster_upload"
+    )
+    if st.button("บันทึกรายชื่อจากไฟล์" if roster_file else "ดึงรายชื่อผู้เล่น", key="fetch_roster"):
         try:
+            payload = None
+            if roster_file:
+                text = roster_file.getvalue().decode("utf-8-sig")
+                payload = text if roster_file.name.lower().endswith(".html") else json.loads(text)
             with st.spinner("กำลังดึงรายชื่อ…"):
-                document = adapter.fetch("roster", season, team_id=team_id)
+                document = adapter.fetch(
+                    "roster", season, team_id=team_id, imported_payload=payload
+                )
                 save_snapshot(document, config)
-            st.success(f"บันทึก {len(document['data'])} รายชื่อแล้ว")
+            st.success(f"บันทึก {len(document['data'])} รายชื่อแล้ว กลับแท็บวิเคราะห์แล้วกดใช้เวลาปัจจุบัน")
         except (ValueError, OSError, KeyError) as error:
-            st.error(str(error))
-    roster = latest_snapshot(config, "roster", season, now(), team_id=team_id)
+            st.warning("ดึง/นำเข้ารายชื่อไม่สำเร็จ ข้อมูลที่เคยบันทึกหรือเตรียมไว้ด้านล่างยังใช้ได้")
+            st.caption(str(error))
+    roster = latest_roster(config, season, now(), team_id)
     if roster:
+        st.caption(
+            f"รายชื่อ {len(roster['data'])} คน · {season} · อ่านจาก NBA ณ {roster['retrieved_at']}"
+            + (" · สำเนาที่เตรียมไว้กับแอป" if roster.get("bundled") else " · ฐานข้อมูล")
+        )
         st.dataframe(pd.DataFrame(roster["data"]), hide_index=True)
+    else:
+        st.info("ยังไม่มีรายชื่อทีมนี้สำหรับฤดูกาลที่เลือก ลองดึงสดหรือนำเข้าไฟล์")
 
 
 def roster_panel(config, game, season, as_of, *, team_ids=None, synthetic=False):
@@ -121,6 +145,7 @@ def roster_panel(config, game, season, as_of, *, team_ids=None, synthetic=False)
         help="คอลัมน์ player_id,name,team; team ต้องตรงกับชื่อทีมที่เลือก",
     )
     all_players = []
+    roster_sources = []
     if upload is not None:
         frame = pd.read_csv(upload, dtype={"player_id": str})
         if not {"player_id", "name", "team"}.issubset(frame.columns):
@@ -135,8 +160,19 @@ def roster_panel(config, game, season, as_of, *, team_ids=None, synthetic=False)
         st.caption("รายชื่อตัวอย่างเป็นข้อมูลจำลอง")
     elif team_ids is not None:
         for team, team_id in team_ids.items():
-            snapshot = latest_snapshot(config, "roster", season, as_of, team_id=team_id)
+            snapshot = latest_roster(config, season, as_of, team_id)
             if snapshot:
+                roster_sources.append(
+                    {
+                        "team": team,
+                        "team_id": str(team_id),
+                        "season": season,
+                        "snapshot_id": snapshot["identity"],
+                        "retrieved_at": snapshot["retrieved_at"],
+                        "source_url": snapshot["source_url"],
+                        "bundled": snapshot.get("bundled", False),
+                    }
+                )
                 all_players.extend(
                     {
                         "player_id": row["player_id"],
@@ -156,6 +192,12 @@ def roster_panel(config, game, season, as_of, *, team_ids=None, synthetic=False)
             if len(labels) != len(roster):
                 raise ValueError(f"Duplicate player in roster for {team}")
             st.markdown(f"### {team}")
+            for source in roster_sources:
+                if source["team"] == team:
+                    st.caption(
+                        f"รายชื่อ ณ {source['retrieved_at']}"
+                        + (" · สำเนา NBA ที่เตรียมไว้" if source["bundled"] else " · ฐานข้อมูล")
+                    )
             if not roster:
                 st.info(f"{team}: ยังไม่มีรายชื่อ ดึงในแท็บข้อมูล NBA หรือนำเข้า CSV")
                 complete = False
@@ -213,6 +255,7 @@ def roster_panel(config, game, season, as_of, *, team_ids=None, synthetic=False)
         "reported_at": utc(as_of).isoformat(),
         "source": "manual user selection",
         "selection_type": "positioned_lineup",
+        "roster_snapshots": roster_sources,
         "players": selections,
     }, complete
 

@@ -1,6 +1,7 @@
 """Player statistics and explicit impact/minutes controls for the Streamlit app."""
 
 import json
+from urllib.parse import urlencode
 
 import pandas as pd
 import streamlit as st
@@ -12,14 +13,30 @@ from nbaprob.lineups.player_stats import player_statistics, rotation_document, r
 
 def player_data_panel(config, season, season_type, as_of, adapter: NBAStatsAdapter):
     with st.expander("สถิติผู้เล่นจาก NBA"):
-        st.markdown("[เปิด NBA Players Traditional](https://www.nba.com/stats/players/traditional)")
         year = int(season[:4]) - 1
         previous = f"{year}-{(year + 1) % 100:02d}"
-        target = st.selectbox("ฐานสถิติผู้เล่น", ["ฤดูกาลที่เลือก", "Regular Season ฤดูกาลก่อน"])
-        year, kind = (
-            (season, season_type) if target == "ฤดูกาลที่เลือก" else (previous, "Regular Season")
+        targets = {
+            "ฤดูกาล/ประเภทที่เลือก": (season, season_type),
+            "Preseason ฤดูกาลที่เลือก": (season, "Preseason"),
+            "Regular Season ฤดูกาลก่อน": (previous, "Regular Season"),
+        }
+        target = st.selectbox(
+            "ฐานสถิติผู้เล่น",
+            list(targets),
+            index=1 if season_type == "Regular Season" else 0,
+            key="player_stats_basis",
+        )
+        year, kind = targets[target]
+        query = urlencode({"Season": year, "SeasonType": kind})
+        st.markdown(
+            f"[เปิดตารางผู้เล่น NBA ตามฐานที่เลือก](https://www.nba.com/stats/players/traditional?{query})"
         )
         st.caption(f"{year} · {kind} · Per Game · เก็บตาม player ID และ team ID")
+        st.caption(
+            "ใช้ข้อมูลที่บันทึกไว้ด้านล่างได้ทันที ไม่จำเป็นต้องกดดึงใหม่ทุกครั้ง "
+            "หากฤดูกาลใหม่ยังไม่มีเกม ให้ใช้ Preseason หรือ Regular Season ฤดูกาลก่อน"
+        )
+        snapshot = latest_snapshot(config, "players", year, as_of, kind)
         upload = st.file_uploader(
             "นำเข้าสถิติผู้เล่น NBA JSON/HTML", type=["json", "html"], key="player_stats_upload"
         )
@@ -27,18 +44,24 @@ def player_data_panel(config, season, season_type, as_of, adapter: NBAStatsAdapt
             try:
                 payload = None
                 if upload:
-                    text = upload.getvalue().decode("utf-8")
+                    text = upload.getvalue().decode("utf-8-sig")
                     payload = text if upload.name.lower().endswith(".html") else json.loads(text)
                 with st.spinner("กำลังอ่านสถิติผู้เล่น…"):
-                    saved = save_snapshot(
-                        adapter.fetch("players", year, kind, imported_payload=payload), config
-                    )
+                    document = adapter.fetch("players", year, kind, imported_payload=payload)
+                    saved = save_snapshot(document, config)
+                snapshot = {**document, "identity": saved["identity"]}
                 st.success(f"บันทึกสถิติผู้เล่น {saved['rows']} แถวแล้ว กดใช้เวลาปัจจุบันก่อนวิเคราะห์")
             except (ValueError, OSError, KeyError) as error:
-                st.error(str(error))
-        snapshot = latest_snapshot(config, "players", year, as_of, kind)
+                st.warning(
+                    "ดึง/นำเข้าสถิติไม่สำเร็จ ข้อมูลที่บันทึกไว้ไม่ได้ถูกลบ "
+                    "หาก NBA ติดต่อไม่ได้ ให้ใช้ข้อมูลเดิมหรืออัปโหลด NBA JSON/HTML ที่มีตารางจริง"
+                )
+                st.caption(str(error))
         if snapshot:
-            st.caption(f"ข้อมูล ณ {snapshot['retrieved_at']} · ค่าร้อยละเก็บเป็นสัดส่วน 0–1")
+            st.caption(
+                f"มีสถิติ {len(snapshot['data'])} แถว · ข้อมูล ณ {snapshot['retrieved_at']} "
+                "· ค่าร้อยละเก็บเป็นสัดส่วน 0–1"
+            )
             st.dataframe(pd.DataFrame(snapshot["data"]), hide_index=True)
         else:
             st.info("ยังไม่มีสถิติผู้เล่นสำหรับฐานที่เลือก ดึงสดหรือนำเข้าไฟล์ NBA ได้")

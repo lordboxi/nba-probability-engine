@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "1",
+      "name": "Keaton Wagler",
+      "player_id": "1643413",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "3",
+      "name": "Bradley Beal",
+      "player_id": "203078",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "4",
+      "name": "Kobe Sanders",
+      "player_id": "1642920",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "5",
+      "name": "Derrick Jones Jr.",
+      "player_id": "1627884",
+      "position": "F",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "7",
+      "name": "Brandon Ingram",
+      "player_id": "1627742",
+      "position": "F",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "8",
+      "name": "Kris Dunn",
+      "player_id": "1627739",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "9",
+      "name": "Gradey Dick",
+      "player_id": "1641711",
+      "position": "G-F",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "10",
+      "name": "Darius Garland",
+      "player_id": "1629636",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "11",
+      "name": "Brook Lopez",
+      "player_id": "201572",
+      "position": "C",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "12",
+      "name": "Nick Martinelli",
+      "player_id": "1643568",
+      "position": "F",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "14",
+      "name": "Yanic Konan Niederhäuser",
+      "player_id": "1642949",
+      "position": "C",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "18",
+      "name": "Baba Miller",
+      "player_id": "1642394",
+      "position": "F",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "22",
+      "name": "Jordan Miller",
+      "player_id": "1641757",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "23",
+      "name": "Isaiah Jackson",
+      "player_id": "1630543",
+      "position": "F",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "24",
+      "name": "Cam Christie",
+      "player_id": "1642353",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "24",
+      "name": "Jalen Pickett",
+      "player_id": "1629618",
+      "position": "G",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "28",
+      "name": "Rui Hachimura",
+      "player_id": "1629060",
+      "position": "F",
+      "team_id": "1610612746"
+    },
+    {
+      "jersey": "31",
+      "name": "Max Strus",
+      "player_id": "1629622",
+      "position": "G-F",
+      "team_id": "1610612746"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "d1b245f95bf925e62ed4028954e52bd2c6df0665e05f0ce9abf892ff2e784ff8",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:32.439645+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612746",
+  "team_id": "1610612746",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

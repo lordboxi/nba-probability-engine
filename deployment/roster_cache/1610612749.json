@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "00",
+      "name": "Jericho Sims",
+      "player_id": "1630579",
+      "position": "C",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "0",
+      "name": "Brayden Burries",
+      "player_id": "1643415",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "3",
+      "name": "Myles Turner",
+      "player_id": "1626167",
+      "position": "C-F",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "5",
+      "name": "Gary Trent Jr.",
+      "player_id": "1629018",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "9",
+      "name": "Kel'el Ware",
+      "player_id": "1642276",
+      "position": "C",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "11",
+      "name": "Tyler Herro",
+      "player_id": "1629639",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "12",
+      "name": "Caris LeVert",
+      "player_id": "1627747",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "13",
+      "name": "Ryan Rollins",
+      "player_id": "1631157",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "15",
+      "name": "Nate Ament",
+      "player_id": "1643417",
+      "position": "F",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "18",
+      "name": "Kyle Kuzma",
+      "player_id": "1628398",
+      "position": "F",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "19",
+      "name": "Kam Jones",
+      "player_id": "1642880",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "20",
+      "name": "AJ Green",
+      "player_id": "1631260",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "21",
+      "name": "Ousmane Dieng",
+      "player_id": "1631172",
+      "position": "F",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "23",
+      "name": "Bogoljub Marković",
+      "player_id": "1642881",
+      "position": "F",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "24",
+      "name": "Jaime Jaquez Jr.",
+      "player_id": "1631170",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "25",
+      "name": "Kasparas Jakučionis",
+      "player_id": "1642857",
+      "position": "G",
+      "team_id": "1610612749"
+    },
+    {
+      "jersey": "30",
+      "name": "Cormac Ryan",
+      "player_id": "1642504",
+      "position": "G",
+      "team_id": "1610612749"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "c7d8aef89617f66832057e53034d91a357ee5ab367027bb4cef4fe0e6ca028c4",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:47.413760+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612749",
+  "team_id": "1610612749",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

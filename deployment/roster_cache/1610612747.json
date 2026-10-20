@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Arthur Kaluma",
+      "player_id": "1641751",
+      "position": "F",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "1",
+      "name": "Adou Thiero",
+      "player_id": "1642876",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "2",
+      "name": "Jarred Vanderbilt",
+      "player_id": "1629020",
+      "position": "F",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "4",
+      "name": "Matisse Thybulle",
+      "player_id": "1629680",
+      "position": "G-F",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "5",
+      "name": "Quentin Grimes",
+      "player_id": "1629656",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "7",
+      "name": "Jaden Hardy",
+      "player_id": "1630702",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "9",
+      "name": "Bronny James",
+      "player_id": "1642355",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "10",
+      "name": "Collin Sexton",
+      "player_id": "1629012",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "11",
+      "name": "Ziaire Williams",
+      "player_id": "1630533",
+      "position": "F",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "12",
+      "name": "Jake LaRavia",
+      "player_id": "1631222",
+      "position": "F",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "14",
+      "name": "Walker Kessler",
+      "player_id": "1631117",
+      "position": "C",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "15",
+      "name": "Austin Reaves",
+      "player_id": "1630559",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "30",
+      "name": "Chris Mañon",
+      "player_id": "1643024",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "31",
+      "name": "AK Okereke",
+      "player_id": "1643758",
+      "position": "F",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "43",
+      "name": "Cameron Carr",
+      "player_id": "1643418",
+      "position": "G",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "54",
+      "name": "Sandro Mamukelashvili",
+      "player_id": "1630572",
+      "position": "F-C",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "55",
+      "name": "Kevon Looney",
+      "player_id": "1626172",
+      "position": "F",
+      "team_id": "1610612747"
+    },
+    {
+      "jersey": "77",
+      "name": "Luka Dončić",
+      "player_id": "1629029",
+      "position": "F-G",
+      "team_id": "1610612747"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "a70a3a7c1bff780c2fe871df3f27a98f1efb88aab7b532d954471c6868c6b0dd",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:45:37.195299+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612747",
+  "team_id": "1610612747",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

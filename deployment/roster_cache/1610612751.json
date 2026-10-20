@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "00",
+      "name": "Josh Minott",
+      "player_id": "1631169",
+      "position": "F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "0",
+      "name": "Mikel Brown Jr.",
+      "player_id": "1643414",
+      "position": "G",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "1",
+      "name": "Keon Ellis",
+      "player_id": "1631165",
+      "position": "G",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "2",
+      "name": "Danny Wolf",
+      "player_id": "1642874",
+      "position": "F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "4",
+      "name": "Drake Powell",
+      "player_id": "1642962",
+      "position": "G-F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "8",
+      "name": "Egor Dëmin",
+      "player_id": "1642856",
+      "position": "G",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "9",
+      "name": "Joshua Jefferson",
+      "player_id": "1643538",
+      "position": "F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "10",
+      "name": "Nolan Traore",
+      "player_id": "1642849",
+      "position": "G",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "13",
+      "name": "Moritz Wagner",
+      "player_id": "1629021",
+      "position": "F-C",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "14",
+      "name": "Terance Mann",
+      "player_id": "1629611",
+      "position": "G-F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "16",
+      "name": "Grant Nelson",
+      "player_id": "1641761",
+      "position": "F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "17",
+      "name": "Michael Porter Jr.",
+      "player_id": "1629008",
+      "position": "F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "20",
+      "name": "Day'Ron Sharpe",
+      "player_id": "1630549",
+      "position": "C",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "21",
+      "name": "Noah Clowney",
+      "player_id": "1641730",
+      "position": "F-C",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "30",
+      "name": "Julius Randle",
+      "player_id": "203944",
+      "position": "F-C",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "31",
+      "name": "Chaney Johnson",
+      "player_id": "1643052",
+      "position": "G-F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "34",
+      "name": "Tyler Bilodeau",
+      "player_id": "1643548",
+      "position": "F",
+      "team_id": "1610612751"
+    },
+    {
+      "jersey": "77",
+      "name": "Ben Saraf",
+      "player_id": "1642879",
+      "position": "G",
+      "team_id": "1610612751"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "d5da4dd0a5bb20c72b77ed61009d2cefb3206d0ee2cee6eaee58a84ddc9492fb",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:47:22.402970+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612751",
+  "team_id": "1610612751",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

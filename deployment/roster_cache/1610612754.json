@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Tyrese Haliburton",
+      "player_id": "1630169",
+      "position": "G",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "1",
+      "name": "Obi Toppin",
+      "player_id": "1630167",
+      "position": "F",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "2",
+      "name": "Andrew Nembhard",
+      "player_id": "1629614",
+      "position": "G-F",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "3",
+      "name": "Braden Smith",
+      "player_id": "1643552",
+      "position": "G",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "5",
+      "name": "Jarace Walker",
+      "player_id": "1641716",
+      "position": "F",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "9",
+      "name": "T.J. McConnell",
+      "player_id": "204456",
+      "position": "G",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "10",
+      "name": "Kelly Oubre Jr.",
+      "player_id": "1626162",
+      "position": "F-G",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "12",
+      "name": "Johnny Furphy",
+      "player_id": "1642277",
+      "position": "G",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "18",
+      "name": "Jalen Slawson",
+      "player_id": "1641771",
+      "position": "F",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "22",
+      "name": "Larry Nance Jr.",
+      "player_id": "1626204",
+      "position": "F-C",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "23",
+      "name": "Aaron Nesmith",
+      "player_id": "1630174",
+      "position": "G-F",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "24",
+      "name": "Kobe Brown",
+      "player_id": "1641738",
+      "position": "F",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "26",
+      "name": "Ben Sheppard",
+      "player_id": "1641767",
+      "position": "G",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "29",
+      "name": "Quenton Jackson",
+      "player_id": "1631245",
+      "position": "G",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "32",
+      "name": "Jay Huff",
+      "player_id": "1630643",
+      "position": "C",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "40",
+      "name": "Ivica Zubac",
+      "player_id": "1627826",
+      "position": "C",
+      "team_id": "1610612754"
+    },
+    {
+      "jersey": "43",
+      "name": "Pascal Siakam",
+      "player_id": "1627783",
+      "position": "F",
+      "team_id": "1610612754"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "6752306dcabb88ba2fb74cc194be07df38a69e1ca6d0c04b8ac09da2cab048f8",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:47:27.430592+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612754",
+  "team_id": "1610612754",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

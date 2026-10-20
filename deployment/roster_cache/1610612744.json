@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Gary Payton II",
+      "player_id": "1627780",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "1",
+      "name": "Yaxel Lendeborg",
+      "player_id": "1642865",
+      "position": "F",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "2",
+      "name": "Brandin Podziemski",
+      "player_id": "1641764",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "3",
+      "name": "Will Richard",
+      "player_id": "1642954",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "4",
+      "name": "Moses Moody",
+      "player_id": "1630541",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "7",
+      "name": "Kristaps Porziņģis",
+      "player_id": "204001",
+      "position": "F-C",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "8",
+      "name": "De'Anthony Melton",
+      "player_id": "1629001",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "10",
+      "name": "Jimmy Butler III",
+      "player_id": "202710",
+      "position": "F",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "12",
+      "name": "Brandon Williams",
+      "player_id": "1630314",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "15",
+      "name": "Gui Santos",
+      "player_id": "1630611",
+      "position": "F",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "18",
+      "name": "LJ Cryer",
+      "player_id": "1643018",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "20",
+      "name": "Al Horford",
+      "player_id": "201143",
+      "position": "C",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "23",
+      "name": "Draymond Green",
+      "player_id": "203110",
+      "position": "F-C",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "28",
+      "name": "Charles Bassey",
+      "player_id": "1629646",
+      "position": "F-C",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "30",
+      "name": "Stephen Curry",
+      "player_id": "201939",
+      "position": "G",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "32",
+      "name": "Georges Niang",
+      "player_id": "1627777",
+      "position": "F",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "33",
+      "name": "Malevy Leons",
+      "player_id": "1642502",
+      "position": "F",
+      "team_id": "1610612744"
+    },
+    {
+      "jersey": "45",
+      "name": "Graham Ike",
+      "player_id": "1643633",
+      "position": "F-C",
+      "team_id": "1610612744"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "c9da517b62b0cedc123ce35d86ecc560e9cab4ad081defd3781a3ad030fc92a5",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:42.342265+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612744",
+  "team_id": "1610612744",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

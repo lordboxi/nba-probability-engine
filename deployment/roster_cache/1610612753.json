@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Anthony Black",
+      "player_id": "1641710",
+      "position": "G",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "1",
+      "name": "Jonathan Isaac",
+      "player_id": "1628371",
+      "position": "F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "2",
+      "name": "Jevon Carter",
+      "player_id": "1628975",
+      "position": "G",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "3",
+      "name": "Desmond Bane",
+      "player_id": "1630217",
+      "position": "G",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "4",
+      "name": "Jalen Suggs",
+      "player_id": "1630591",
+      "position": "G",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "5",
+      "name": "Paolo Banchero",
+      "player_id": "1631094",
+      "position": "F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "8",
+      "name": "Jamal Cain",
+      "player_id": "1631288",
+      "position": "F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "9",
+      "name": "Nikola Vučević",
+      "player_id": "202696",
+      "position": "C",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "11",
+      "name": "Jase Richardson",
+      "player_id": "1642859",
+      "position": "G",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "14",
+      "name": "Colin Castleton",
+      "player_id": "1630658",
+      "position": "C",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "22",
+      "name": "Franz Wagner",
+      "player_id": "1630532",
+      "position": "F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "23",
+      "name": "Tristan da Silva",
+      "player_id": "1641783",
+      "position": "F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "25",
+      "name": "Izaiyah Nelson",
+      "player_id": "1643593",
+      "position": "F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "30",
+      "name": "Alex Morales",
+      "player_id": "1631457",
+      "position": "G",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "34",
+      "name": "Wendell Carter Jr.",
+      "player_id": "1628976",
+      "position": "C-F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "35",
+      "name": "Goga Bitadze",
+      "player_id": "1629048",
+      "position": "C-F",
+      "team_id": "1610612753"
+    },
+    {
+      "jersey": "93",
+      "name": "Noah Penda",
+      "player_id": "1642869",
+      "position": "G-F",
+      "team_id": "1610612753"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "08ff654f8db50c7e7087c38746deec49d61f905e6e8223703a40fcbbb93294e0",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:07.576849+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612753",
+  "team_id": "1610612753",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

@@ -45,7 +45,7 @@ def test_cloud_bootstrap_is_idempotent_and_preserves_observation_time(config):
     local_data = Path(config["data"]["database"])
     local_data.write_bytes(b"owner data must not be changed")
     first = bootstrap_snapshots(config, SEEDS)
-    assert len(first) == 5
+    assert len(first) == 6
     assert bootstrap_snapshots(config, SEEDS) == first
     assert local_data.read_bytes() == b"owner data must not be changed"
     document = json.loads((SEEDS / "teams-preseason.json").read_text(encoding="utf-8"))
@@ -188,7 +188,7 @@ def test_cloud_player_changes_skip_network_and_history_loads_once(config, tmp_pa
     assert not app.error and not app.exception and not calls
     app.session_state["active_tab"] = "ประวัติและผลจริง"
     app.run(timeout=30)
-    assert calls.count(("GET", "nba_forecasts")) == 2  # One row page, one empty page.
+    assert calls.count(("GET", "nba_forecasts")) == 2
     assert calls.count(("GET", "nba_outcomes")) == 1
     assert len(calls) == 3
     assert app.selectbox(key=starter.key).value == player["player_id"]
@@ -199,3 +199,55 @@ def test_cloud_player_changes_skip_network_and_history_loads_once(config, tmp_pa
     next(item for item in app.button if item.label == "รีเฟรชข้อมูลที่บันทึกไว้").click().run(timeout=30)
     assert calls and all(table == "nba_snapshots" for _, table in calls)
     assert not app.error and not app.exception
+
+
+def test_data_tab_rosters_and_saved_player_stats_work_without_new_regular_games(
+    config, tmp_path, monkeypatch
+):
+    pytest.importorskip("streamlit")
+    from streamlit.testing.v1 import AppTest
+
+    from nbaprob.data.nba_stats import NBAStatsAdapter
+
+    cfg = tmp_path / "config.yaml"
+    cfg.write_text(yaml.safe_dump(config), encoding="utf-8")
+    monkeypatch.setenv("NBA_CONFIG", str(cfg))
+    monkeypatch.setenv("NBA_CLOUD_MODE", "0")
+
+    def offline(*args, **kwargs):
+        raise ValueError("NBA Stats could not be reached")
+
+    monkeypatch.setattr(NBAStatsAdapter, "fetch", offline)
+    app = AppTest.from_file(str(ROOT / "deployment/streamlit_app.py")).run(timeout=30)
+    app.session_state["active_tab"] = "ข้อมูล NBA"
+    app.run(timeout=30)
+    assert not app.error and not app.exception
+    assert app.button(key="fetch_roster")  # Must remain available before Regular Season starts.
+    assert app.selectbox(key="player_stats_basis").value == "Preseason ฤดูกาลที่เลือก"
+    assert any(len(frame.value) == 577 for frame in app.dataframe)
+    app.selectbox(key="player_stats_basis").set_value("Regular Season ฤดูกาลก่อน").run(timeout=30)
+    assert any(len(frame.value) == 582 for frame in app.dataframe)
+    app.button(key="fetch_players").click().run(timeout=30)
+    assert not app.error and not app.exception
+    assert any("ข้อมูลที่บันทึกไว้ไม่ได้ถูกลบ" in item.value for item in app.warning)
+    assert any(len(frame.value) == 582 for frame in app.dataframe)
+
+    def refreshed(*args, **kwargs):
+        doc = json.loads((SEEDS / "players-2025-26-regular.json").read_text(encoding="utf-8"))
+        doc["retrieved_at"] = pd.Timestamp.now(tz="UTC").isoformat()
+        doc["data"] = doc["data"][:1]
+        return doc
+
+    monkeypatch.setattr(NBAStatsAdapter, "fetch", refreshed)
+    app.button(key="fetch_players").click().run(timeout=30)
+    assert not app.error and not app.exception
+    assert any(len(frame.value) == 1 for frame in app.dataframe)  # Visible on the save run itself.
+    app.session_state["active_tab"] = "วิเคราะห์คู่แข่งขัน"
+    app.run(timeout=30)
+    home = next(item for item in app.selectbox if item.label == "เจ้าบ้าน")
+    home.set_value("1610612747").run(timeout=30)
+    assert not app.error and not app.exception
+    assert (
+        len([item for item in app.selectbox if item.key and item.key.startswith("starter_")]) == 10
+    )
+    assert any(item.label == "Arthur Kaluma" for item in app.checkbox)

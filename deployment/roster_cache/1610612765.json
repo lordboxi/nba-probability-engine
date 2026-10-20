@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Ugonna Onyenso",
+      "player_id": "1642391",
+      "position": "C",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "0",
+      "name": "Jalen Duren",
+      "player_id": "1631105",
+      "position": "C",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "2",
+      "name": "Cade Cunningham",
+      "player_id": "1630595",
+      "position": "G",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "5",
+      "name": "Ronald Holland II",
+      "player_id": "1641842",
+      "position": "F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "7",
+      "name": "Paul Reed",
+      "player_id": "1630194",
+      "position": "F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "8",
+      "name": "Chaz Lanier",
+      "player_id": "1642404",
+      "position": "G",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "9",
+      "name": "Ausar Thompson",
+      "player_id": "1641709",
+      "position": "G-F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "12",
+      "name": "Taurean Prince",
+      "player_id": "1627752",
+      "position": "F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "13",
+      "name": "Isaac Jones",
+      "player_id": "1642403",
+      "position": "F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "17",
+      "name": "Isaiah Joe",
+      "player_id": "1630198",
+      "position": "G",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "20",
+      "name": "John Collins",
+      "player_id": "1628381",
+      "position": "F-C",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "23",
+      "name": "Ebuka Okorie",
+      "player_id": "1643536",
+      "position": "G",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "24",
+      "name": "Daniss Jenkins",
+      "player_id": "1642450",
+      "position": "G",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "27",
+      "name": "Kevin Huerter",
+      "player_id": "1628989",
+      "position": "G-F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "31",
+      "name": "Javonte Green",
+      "player_id": "1629750",
+      "position": "G",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "35",
+      "name": "Tolu Smith",
+      "player_id": "1642449",
+      "position": "F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "55",
+      "name": "Duncan Robinson",
+      "player_id": "1629130",
+      "position": "F",
+      "team_id": "1610612765"
+    },
+    {
+      "jersey": "94",
+      "name": "Elijah Harkless",
+      "player_id": "1641989",
+      "position": "G",
+      "team_id": "1610612765"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "392e13b5514679c5333c93ceb932fd0ceb2a8bd86e06e1fa666fe30656b5a04b",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:45:22.327641+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612765",
+  "team_id": "1610612765",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

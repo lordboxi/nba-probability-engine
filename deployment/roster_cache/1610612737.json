@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Keshon Gilbert",
+      "player_id": "1642933",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "00",
+      "name": "RayJ Dennis",
+      "player_id": "1642484",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "0",
+      "name": "Luguentz Dort",
+      "player_id": "1629652",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "1",
+      "name": "Jalen Johnson",
+      "player_id": "1630552",
+      "position": "F",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "2",
+      "name": "Aaron Wiggins",
+      "player_id": "1630598",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "3",
+      "name": "CJ McCollum",
+      "player_id": "203468",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "4",
+      "name": "Kingston Flemings",
+      "player_id": "1643412",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "5",
+      "name": "Dyson Daniels",
+      "player_id": "1630700",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "7",
+      "name": "Nickeil Alexander-Walker",
+      "player_id": "1629638",
+      "position": "G",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "8",
+      "name": "Dorian Finney-Smith",
+      "player_id": "1627827",
+      "position": "F",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "13",
+      "name": "Henri Veesaar",
+      "player_id": "1643539",
+      "position": "C",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "14",
+      "name": "Asa Newell",
+      "player_id": "1642854",
+      "position": "F",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "17",
+      "name": "Onyeka Okongwu",
+      "player_id": "1630168",
+      "position": "F-C",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "18",
+      "name": "Mouhamed Gueye",
+      "player_id": "1631243",
+      "position": "F",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "20",
+      "name": "Zuby Ejiofor",
+      "player_id": "1643544",
+      "position": "F",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "22",
+      "name": "Jalen Wilson",
+      "player_id": "1630592",
+      "position": "F",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "24",
+      "name": "Corey Kispert",
+      "player_id": "1630557",
+      "position": "F",
+      "team_id": "1610612737"
+    },
+    {
+      "jersey": "31",
+      "name": "Jock Landale",
+      "player_id": "1629111",
+      "position": "C",
+      "team_id": "1610612737"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "51ef394d0dc7ae34fb59664a9a2495d1cb21020b1e93495fb91625f687d84196",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:45:57.457084+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612737",
+  "team_id": "1610612737",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

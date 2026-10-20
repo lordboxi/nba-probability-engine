@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "00",
+      "name": "Harrison Ingram",
+      "player_id": "1631127",
+      "position": "F",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "2",
+      "name": "Kyle Filipowski",
+      "player_id": "1642271",
+      "position": "C",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "3",
+      "name": "Keyonte George",
+      "player_id": "1641718",
+      "position": "G",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "5",
+      "name": "Josh Green",
+      "player_id": "1630182",
+      "position": "G",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "8",
+      "name": "Isaiah Collier",
+      "player_id": "1642268",
+      "position": "G",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "10",
+      "name": "Svi Mykhailiuk",
+      "player_id": "1629004",
+      "position": "G-F",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "11",
+      "name": "Jaxson Hayes",
+      "player_id": "1629637",
+      "position": "C-F",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "13",
+      "name": "Tony Bradley",
+      "player_id": "1628396",
+      "position": "C-F",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "15",
+      "name": "Trey Alexander",
+      "player_id": "1641725",
+      "position": "G",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "19",
+      "name": "Ace Bailey",
+      "player_id": "1642846",
+      "position": "F",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "20",
+      "name": "Jaren Jackson Jr.",
+      "player_id": "1628991",
+      "position": "F-C",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "21",
+      "name": "Josh Okogie",
+      "player_id": "1629006",
+      "position": "G",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "22",
+      "name": "Darryn Peterson",
+      "player_id": "1643408",
+      "position": "G",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "23",
+      "name": "Lauri Markkanen",
+      "player_id": "1628374",
+      "position": "F-C",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "25",
+      "name": "Blake Hinson",
+      "player_id": "1642396",
+      "position": "F",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "28",
+      "name": "Brice Sensabaugh",
+      "player_id": "1641729",
+      "position": "F",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "30",
+      "name": "Jusuf Nurkić",
+      "player_id": "203994",
+      "position": "C",
+      "team_id": "1610612762"
+    },
+    {
+      "jersey": "44",
+      "name": "Mo Bamba",
+      "player_id": "1628964",
+      "position": "C",
+      "team_id": "1610612762"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "b2f6f8181350d05bb2f7e6f8cf0a79aca3edc3a8de7c9f020338ab9e8c236e60",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:47:17.415493+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612762",
+  "team_id": "1610612762",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

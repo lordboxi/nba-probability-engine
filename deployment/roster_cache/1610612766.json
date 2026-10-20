@@ -1,0 +1,142 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Michael Ajayi",
+      "player_id": "1642369",
+      "position": "G",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "",
+      "name": "Kylan Boswell",
+      "player_id": "1643573",
+      "position": "G",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "00",
+      "name": "Royce O'Neale",
+      "player_id": "1626220",
+      "position": "F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "2",
+      "name": "Grant Williams",
+      "player_id": "1629684",
+      "position": "F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "3",
+      "name": "Coby White",
+      "player_id": "1629632",
+      "position": "G",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "4",
+      "name": "Sion James",
+      "player_id": "1642883",
+      "position": "G",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "5",
+      "name": "Christian Anderson",
+      "player_id": "1643515",
+      "position": "G",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "7",
+      "name": "Kon Knueppel",
+      "player_id": "1642851",
+      "position": "G-F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "8",
+      "name": "Grayson Allen",
+      "player_id": "1628960",
+      "position": "G",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "11",
+      "name": "Naz Reid",
+      "player_id": "1629675",
+      "position": "C-F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "11",
+      "name": "Ryan Kalkbrenner",
+      "player_id": "1641750",
+      "position": "C",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "14",
+      "name": "Moussa Diabaté",
+      "player_id": "1631217",
+      "position": "F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "16",
+      "name": "PJ Hall",
+      "player_id": "1641790",
+      "position": "C",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "17",
+      "name": "Dennis Schröder",
+      "player_id": "203471",
+      "position": "G",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "22",
+      "name": "Hannes Steinbach",
+      "player_id": "1643419",
+      "position": "F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "24",
+      "name": "Brandon Miller",
+      "player_id": "1641706",
+      "position": "F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "31",
+      "name": "Tidjane Salaün",
+      "player_id": "1642275",
+      "position": "F",
+      "team_id": "1610612766"
+    },
+    {
+      "jersey": "33",
+      "name": "Liam McNeeley",
+      "player_id": "1642862",
+      "position": "F",
+      "team_id": "1610612766"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "9382a1afb8280ff6127e35d54e67a739e1f2de7a3b1ba20fe86fdb729e87a614",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:22.354715+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612766",
+  "team_id": "1610612766",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

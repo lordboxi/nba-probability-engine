@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Tobe Awaka",
+      "player_id": "1643591",
+      "position": "F",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "",
+      "name": "Jaylin Sellers",
+      "player_id": "1643637",
+      "position": "",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "2",
+      "name": "Noa Essengue",
+      "player_id": "1642855",
+      "position": "F",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "3",
+      "name": "Josh Giddey",
+      "player_id": "1630581",
+      "position": "G",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "5",
+      "name": "Dailyn Swain",
+      "player_id": "1643517",
+      "position": "F",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "8",
+      "name": "Caleb Wilson",
+      "player_id": "1643410",
+      "position": "F",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "8",
+      "name": "Buddy Hield",
+      "player_id": "1627741",
+      "position": "G",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "9",
+      "name": "Nic Claxton",
+      "player_id": "1629651",
+      "position": "C",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "11",
+      "name": "Leonard Miller",
+      "player_id": "1631159",
+      "position": "F",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "12",
+      "name": "Zach Collins",
+      "player_id": "1628380",
+      "position": "F-C",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "14",
+      "name": "Matas Buzelis",
+      "player_id": "1641824",
+      "position": "F",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "15",
+      "name": "Jordan Hawkins",
+      "player_id": "1641722",
+      "position": "G",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "24",
+      "name": "Norman Powell",
+      "player_id": "1626181",
+      "position": "G",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "25",
+      "name": "Jalen Smith",
+      "player_id": "1630188",
+      "position": "F-C",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "30",
+      "name": "Tre Jones",
+      "player_id": "1630200",
+      "position": "G",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "35",
+      "name": "Isaac Okoro",
+      "player_id": "1630171",
+      "position": "F-G",
+      "team_id": "1610612741"
+    },
+    {
+      "jersey": "44",
+      "name": "Patrick Williams",
+      "player_id": "1630172",
+      "position": "F",
+      "team_id": "1610612741"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "3d60e7f7136889c321e118e9886c4c864f029dca8c584dbc4d00ee3ddd694426",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:52.614886+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612741",
+  "team_id": "1610612741",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

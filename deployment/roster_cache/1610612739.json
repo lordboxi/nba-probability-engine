@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "1",
+      "name": "James Harden",
+      "player_id": "201935",
+      "position": "G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "3",
+      "name": "Thomas Bryant",
+      "player_id": "1628418",
+      "position": "C-F",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "4",
+      "name": "Evan Mobley",
+      "player_id": "1630596",
+      "position": "C",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "5",
+      "name": "Sam Merrill",
+      "player_id": "1630241",
+      "position": "G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "8",
+      "name": "Peyton Watson",
+      "player_id": "1631212",
+      "position": "G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "9",
+      "name": "Craig Porter Jr.",
+      "player_id": "1641854",
+      "position": "G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "12",
+      "name": "Riley Minix",
+      "player_id": "1642434",
+      "position": "F",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "15",
+      "name": "Meleek Thomas",
+      "player_id": "1643509",
+      "position": "G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "18",
+      "name": "Khalifa Diop",
+      "player_id": "1631215",
+      "position": "C",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "20",
+      "name": "Jaylon Tyson",
+      "player_id": "1642281",
+      "position": "G-F",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "21",
+      "name": "Tristan Enaruna",
+      "player_id": "1642400",
+      "position": "F",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "24",
+      "name": "Tyrese Proctor",
+      "player_id": "1642878",
+      "position": "G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "31",
+      "name": "Jarrett Allen",
+      "player_id": "1628386",
+      "position": "C",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "33",
+      "name": "Mario Hezonja",
+      "player_id": "1626209",
+      "position": "F-G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "35",
+      "name": "Nae'Qwan Tomlin",
+      "player_id": "1641772",
+      "position": "F",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "45",
+      "name": "Donovan Mitchell",
+      "player_id": "1628378",
+      "position": "G",
+      "team_id": "1610612739"
+    },
+    {
+      "jersey": "88",
+      "name": "Ernest Udeh, Jr.",
+      "player_id": "1643640",
+      "position": "C",
+      "team_id": "1610612739"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "1d93542783a39ba554f79890f14a609412805d6d2929477239cc77c8bfcf8e90",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:45:47.647145+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612739",
+  "team_id": "1610612739",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

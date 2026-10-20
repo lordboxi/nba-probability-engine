@@ -1,0 +1,128 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Malik Monk",
+      "player_id": "1628370",
+      "position": "G",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "5",
+      "name": "Darius Acuff Jr.",
+      "player_id": "1643411",
+      "position": "G",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "8",
+      "name": "Zach LaVine",
+      "player_id": "203897",
+      "position": "G",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "9",
+      "name": "Precious Achiuwa",
+      "player_id": "1630173",
+      "position": "F",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "10",
+      "name": "Nique Clifford",
+      "player_id": "1642363",
+      "position": "G",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "11",
+      "name": "Domantas Sabonis",
+      "player_id": "1627734",
+      "position": "F-C",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "13",
+      "name": "Keegan Murray",
+      "player_id": "1631099",
+      "position": "F",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "15",
+      "name": "De'Andre Hunter",
+      "player_id": "1629631",
+      "position": "F-G",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "19",
+      "name": "Leaky Black",
+      "player_id": "1641778",
+      "position": "F",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "22",
+      "name": "Jonathan Mogbo",
+      "player_id": "1642367",
+      "position": "F",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "25",
+      "name": "Ben Simmons",
+      "player_id": "1627732",
+      "position": "G-F",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "29",
+      "name": "Daeqwon Plowden",
+      "player_id": "1631342",
+      "position": "G-F",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "32",
+      "name": "Dylan Cardwell",
+      "player_id": "1642928",
+      "position": "C",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "33",
+      "name": "Alex Karaban",
+      "player_id": "1642284",
+      "position": "F",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "34",
+      "name": "Emanuel Sharp",
+      "player_id": "1643567",
+      "position": "G",
+      "team_id": "1610612758"
+    },
+    {
+      "jersey": "42",
+      "name": "Maxime Raynaud",
+      "player_id": "1642875",
+      "position": "C",
+      "team_id": "1610612758"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "ba5ed641b56dbc76fcaf145f5a99f54becbfc0b7a4749faf209aebdd0b06e576",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:47:12.414025+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612758",
+  "team_id": "1610612758",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

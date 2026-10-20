@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "",
+      "name": "Tarik Biberovic",
+      "player_id": "1641844",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "0",
+      "name": "Max Christie",
+      "player_id": "1631108",
+      "position": "G",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "2",
+      "name": "Dereck Lively II",
+      "player_id": "1641726",
+      "position": "C",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "3",
+      "name": "Naji Marshall",
+      "player_id": "1630230",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "8",
+      "name": "Marcus Sasser",
+      "player_id": "1631204",
+      "position": "G",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "9",
+      "name": "Jett Howard",
+      "player_id": "1641724",
+      "position": "G",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "10",
+      "name": "Zaccharie Risacher",
+      "player_id": "1642258",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "11",
+      "name": "Kyrie Irving",
+      "player_id": "202681",
+      "position": "G",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "14",
+      "name": "Morez Johnson Jr.",
+      "player_id": "1643516",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "16",
+      "name": "Caleb Martin",
+      "player_id": "1628997",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "21",
+      "name": "Daniel Gafford",
+      "player_id": "1629655",
+      "position": "F-C",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "25",
+      "name": "P.J. Washington",
+      "player_id": "1629023",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "30",
+      "name": "Moussa Cisse",
+      "player_id": "1630619",
+      "position": "C",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "32",
+      "name": "Cooper Flagg",
+      "player_id": "1642843",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "33",
+      "name": "Tobi Lawal",
+      "player_id": "1643588",
+      "position": "F",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "34",
+      "name": "Santi Aldama",
+      "player_id": "1630583",
+      "position": "F-C",
+      "team_id": "1610612742"
+    },
+    {
+      "jersey": "55",
+      "name": "Sergio de Larrea",
+      "player_id": "1643547",
+      "position": "G",
+      "team_id": "1610612742"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "1aef9a5ae26b5f2efe2238350b16707015ef1d02293fdea1c9d043362398843b",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:57.684234+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612742",
+  "team_id": "1610612742",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}

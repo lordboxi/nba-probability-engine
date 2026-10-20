@@ -1,0 +1,135 @@
+{
+  "acquisition_method": "http",
+  "data": [
+    {
+      "jersey": "0",
+      "name": "Simone Fontecchio",
+      "player_id": "1631323",
+      "position": "F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "2",
+      "name": "Davion Mitchell",
+      "player_id": "1630558",
+      "position": "G",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "4",
+      "name": "Ryan Conwell",
+      "player_id": "1643553",
+      "position": "G",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "5",
+      "name": "Nikola Jović",
+      "player_id": "1631107",
+      "position": "F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "7",
+      "name": "Giannis Antetokounmpo",
+      "player_id": "203507",
+      "position": "F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "8",
+      "name": "Nick Richards",
+      "player_id": "1630208",
+      "position": "C",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "9",
+      "name": "Pelle Larsson",
+      "player_id": "1641796",
+      "position": "G",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "10",
+      "name": "Tim Hardaway Jr.",
+      "player_id": "203501",
+      "position": "G",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "11",
+      "name": "Klay Thompson",
+      "player_id": "202691",
+      "position": "G-F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "12",
+      "name": "Dru Smith",
+      "player_id": "1630696",
+      "position": "G",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "13",
+      "name": "Bam Adebayo",
+      "player_id": "1628389",
+      "position": "C-F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "15",
+      "name": "Myron Gardner",
+      "player_id": "1642066",
+      "position": "F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "16",
+      "name": "Keshad Johnson",
+      "player_id": "1642352",
+      "position": "F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "22",
+      "name": "Andrew Wiggins",
+      "player_id": "203952",
+      "position": "F",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "24",
+      "name": "Tre Donaldson",
+      "player_id": "1643621",
+      "position": "G",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "50",
+      "name": "Vladislav Goldin",
+      "player_id": "1642884",
+      "position": "C",
+      "team_id": "1610612748"
+    },
+    {
+      "jersey": "95",
+      "name": "Bobby Portis Jr.",
+      "player_id": "1626171",
+      "position": "F",
+      "team_id": "1610612748"
+    }
+  ],
+  "imported": false,
+  "origin_snapshot_identity": "46b6410b6ee26f8d979baab6f7aed8beed90ff49d3fef7ded91064d80c87da00",
+  "provider": "NBA.com",
+  "resource": "roster",
+  "retrieved_at": "2026-10-20T07:46:27.516324+00:00",
+  "season": "2026-27",
+  "season_type": "",
+  "source_url": "https://www.nba.com/team/1610612748",
+  "team_id": "1610612748",
+  "terms_reviewed_on": "2026-10-19",
+  "terms_url": "https://www.nba.com/termsofuse"
+}
